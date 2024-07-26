@@ -1,0 +1,181 @@
+{
+  "nodes": {
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718242063,
+        "narHash": "sha256-n3AWItJ4a94GT0cray/eUV7tt3mulQ52L+lWJN9d1E8=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "832a9f2c81ff3485404bd63952eadc17bf7ccef2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "google-supported-domains": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-8i74yljxv52wfA7Vwq2gGso62aYNZa5ZRB3S/WzU03Y=",
+        "type": "file",
+        "url": "https://www.google.com/supported_domains"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://www.google.com/supported_domains"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718243258,
+        "narHash": "sha256-abBpj2VU8p6qlRzTU8o22q68MmOaZ4v8zZ4UlYl5YRU=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "8d5e27b4807d25308dfe369d5a923d87e7dbfda3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1718318537,
+        "narHash": "sha256-4Zu0RYRcAY/VWuu6awwq4opuiD//ahpc2aFHg2CWqFY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e9ee548d90ff586a6471b4ae80ae9cfcbceb3420",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1721524707,
+        "narHash": "sha256-5NctRsoE54N86nWd0psae70YSLfrOek3Kv1e8KoXe/0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "556533a23879fc7e5f98dd2e0b31a6911a213171",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "oisd-big": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-H8sduguro36SOCh6ubNbm2hXYrtBE7YStW2v5LNY65M=",
+        "type": "file",
+        "url": "https://big.oisd.nl/unbound"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://big.oisd.nl/unbound"
+      }
+    },
+    "oisd-nsfw": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-8D81daH+SsZtf32O4rXII8ZFnuD2zvm0lHrh8vcukuQ=",
+        "type": "file",
+        "url": "https://nsfw.oisd.nl/unbound"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://nsfw.oisd.nl/unbound"
+      }
+    },
+    "root": {
+      "inputs": {
+        "disko": "disko",
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "sops-nix": "sops-nix",
+        "unbound-lists": "unbound-lists"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable"
+      },
+      "locked": {
+        "lastModified": 1721688883,
+        "narHash": "sha256-9jsjsRKtJRqNSTXKj9zuDFRf2PGix30nMx9VKyPgD2U=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "aff2f88277dabe695de4773682842c34a0b7fd54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "stevenblack-hosts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721522228,
+        "narHash": "sha256-qM7pLw81jjPh8IWAHO8KguwSKrU/97g9aMtIvmsh8SA=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "2eaa823eac9129bade167cf89549829b1e11bddb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
+    "unbound-lists": {
+      "inputs": {
+        "google-supported-domains": "google-supported-domains",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "oisd-big": "oisd-big",
+        "oisd-nsfw": "oisd-nsfw",
+        "stevenblack-hosts": "stevenblack-hosts"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-D5TXVaaf6TEYyIAm+lNx6O5rDdTNPQK5VdzLqFXuPDY=",
+        "path": "flakes/unbound-lists",
+        "type": "path"
+      },
+      "original": {
+        "path": "flakes/unbound-lists",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

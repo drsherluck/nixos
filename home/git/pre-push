@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+branch=`git rev-parse --abbrev-ref HEAD`
+protected="^(master|dev|release-*|patch-*)"
+
+if [[ -e .noverify ]]; then
+    exit 0
+fi
+
+if [[ "$branch" =~ "$protected" ]]; then
+    echo "Prevented push to branch \"$branch\" by pre-push hook"
+    echo "Use git push --no-verify to force this operation"
+    exit 1
+fi
