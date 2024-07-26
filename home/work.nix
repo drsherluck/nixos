@@ -18,6 +18,6 @@
   ];
 
   programs.git = {
-    # TODO
+    userName = "drsherluck";
   };
 }

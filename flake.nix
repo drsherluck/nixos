@@ -40,5 +40,16 @@
         {nixpkgs.overlays = [unbound-lists.overlays.default];}
       ];
     };
+    nixosConfigurations."caladan" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/caladan
+        disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        unbound-lists.nixosModules.unbound-rules
+        sops-nix.nixosModules.sops
+        {nixpkgs.overlays = [unbound-lists.overlays.default];}
+      ];
+    };
   };
 }
