@@ -1,0 +1,35 @@
+# Structure
+
+flakes/      custom flakes that can be used as inputs in the root flake.nix
+hosts/       configuration for every hosts (users, system packages, drivers etc...)
+home/        home manager configs
+system/      system wide configs
+modules/     custom modules that simplify system/home configuration
+pkgs/        custom packages
+flake.nix    main entry point
+flake.lock   dependency locks (see flake.nix inputs section)
+
+# Installation
+
+1. Create a live USB from the minimal NixOS installer .iso (or create a modified one that has networkmanager)
+2. On boot, configure wifi if needed and clone this repo
+3. Create a entry in hosts/ and modify the disko.nix configuration for that host
+4. Create variables:
+    PATH_TO_REPO="$(git rev-parse --show-toplevel)" # do this inside the git repository
+    NIXOS_HOST="<new hostname here>"
+5. Execute:
+    sudo nix --experimental-features "nix-command flakes" \
+        run github:nix-community/disko -- \
+        --mode disko "$PATH_TO_REPO/hosts/$NIXOS_HOST/disko.nix"
+    sudo nixos-generate-config --no-filesystems --root /mnt
+    cp /mnt/etc/nixos/hardware-configuration.nix "$PATH_TO_REPO/hosts/$NIXOS_HOST/hardware.nix"
+6. Copy a default.nix from the another host and:
+    Change networking.hostName to new hostname
+    Change system.stateVersion to the one found in /mnt/etc/nixos/configuration.nix
+7. Add a new nixosConfigurations entry in flane.nix outputs for the new host
+8. Execute:
+    sudo nixos-install --root /mnt --flake '$PATH_TO_REPO#nixos'
+    mv $PATH_TO_REPO /mnt/home/danilo/nixos
+9. reboot the system
+
+Afterwards setup ssh and ~/.ssh/allowed_signers before commiting and pushing to remote.
