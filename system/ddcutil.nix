@@ -10,6 +10,7 @@
     printf '%s\n' $(seq 1 $num) | xargs -I% -P1 ddcutil setvcp --mccs=2.2 --noconfig --noverify -d % 10 "$@"
   '';
 in {
+  hardware.i2c.enable = true;
   environment.systemPackages = with pkgs; [
     ddcutil
     ripgrep

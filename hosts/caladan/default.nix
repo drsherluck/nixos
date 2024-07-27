@@ -121,7 +121,6 @@ in {
     wget
     curl
     ripgrep
-    ddcutil
     alejandra # nix formatter
     pulseaudio # pactl
     vulkan-validation-layers # for wlr vulkan
