@@ -9,6 +9,11 @@ pkgs/        custom packages
 flake.nix    main entry point
 flake.lock   dependency locks (see flake.nix inputs section)
 
+# Hosts
+
+arrakis (personal desktop)
+caladan (work laptop)
+
 # Installation
 
 1. Create a live USB from the minimal NixOS installer .iso (or create a modified one that has networkmanager)
