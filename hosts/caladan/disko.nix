@@ -27,19 +27,19 @@
                 name = "crypted";
                 settings.allowDiscards = true;
                 passwordFile = "/tmp/secret.key";
-		content = {
-		  type = "btrfs";
-		  subvolumes = {
-		    "/root" = {
-		      mountpoint = "/";
-		      mountOptions = ["compress=zstd" "noatime"];
-		    };
-		    "/swap" = {
-		      mountpoint = "/.swap";
-		      swap.swapfile.size = "16G";
-		    };
-		  };
-		};
+                content = {
+                  type = "btrfs";
+                  subvolumes = {
+                    "/root" = {
+                      mountpoint = "/";
+                      mountOptions = ["compress=zstd" "noatime"];
+                    };
+                    "/swap" = {
+                      mountpoint = "/.swap";
+                      swap.swapfile.size = "16G";
+                    };
+                  };
+                };
               };
             };
           };
