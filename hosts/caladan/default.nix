@@ -20,6 +20,7 @@ in {
     ../../system/fonts.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
+    ../../system/bluetooth.nix
   ];
 
   boot.loader = {
