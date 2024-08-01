@@ -87,7 +87,7 @@
     "oisd-big": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-miBQcaURz7iz7WWUVhjP+qZ63LNlPt4GgK7ywMcMklY=",
+        "narHash": "sha256-fe5RVHvCu13LBGf3DzocgC/UuIhjHFd+UmN3EjpM0Us=",
         "type": "file",
         "url": "https://big.oisd.nl/unbound"
       },

@@ -48,6 +48,9 @@
           sops-nix.nixosModules.sops
           {nixpkgs.overlays = [unbound-lists.overlays.default];}
         ];
+        specialArgs = {
+          inherit inputs;
+        };
       };
   };
 }

@@ -19,6 +19,7 @@
   ];
 
   sops.secrets."git/email" = {};
+  sops.defaultSopsFile = ../secrets/arrakis.yaml;
 
   programs.git = {
     userName = "drsherluck";

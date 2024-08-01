@@ -2,6 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -96,6 +97,7 @@ in {
   security.polkit.enable = true;
   #security.pam.services.swaylock = {};
   home-manager = {
+    sharedModules = [inputs.sops-nix.homeManagerModules.sops];
     useUserPackages = true;
     useGlobalPkgs = true;
     users.danilo = lib.mkMerge [
