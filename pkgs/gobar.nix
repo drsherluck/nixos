@@ -5,8 +5,8 @@ pkgs.buildGoModule {
   src = pkgs.fetchFromGitHub {
     owner = "drsherluck";
     repo = "gobar";
-    rev = "81f2b5cce3a89f2fc9069e4f3b5f75db79ad25da";
-    hash = "sha256-I44PGm9dNmeQpNf6d/W9eSmniUm5T60QjmA9EByP5VE=";
+    rev = "71faabf20d01a0a2dc2b4db4d05e975249c624e8";
+    hash = "sha256-gilSstNuYqNhJlfYql1E3cFpYkL11+hsPFd8AzsuqM8=";
   };
 
   vendorHash = "sha256-MNKLU/pgugW75RyCpiL9uf3I5TL6DvUvq6vUUCmX6/s=";
