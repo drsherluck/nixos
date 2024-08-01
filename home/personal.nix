@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   imports = [
     ./tmux
     ./sway
@@ -15,10 +15,15 @@
     ./git
     ./dev.nix
     ./core.nix
+    ./sops
   ];
 
+  sops.secrets."git/email" = {};
+
   programs.git = {
-    userEmail = "danilobett@gmail.com";
     userName = "drsherluck";
+    includes = [
+      {path = config.sops.secrets."git/email".path;}
+    ];
   };
 }

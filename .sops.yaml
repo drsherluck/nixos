@@ -1,0 +1,8 @@
+# https://github.com/Mic92/sops-nix
+keys:
+- &arrakis age19gdzjdzlcwmjatrzz0am3fxdyymfrdrvp90qxgqc9eg2azk7yyfqkxafrl
+creation_rules:
+- path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+  key_groups:
+  - age:
+    - *arrakis

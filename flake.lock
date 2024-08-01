@@ -87,7 +87,7 @@
     "oisd-big": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-dgL7L1ehj+ESW/eY5Q49Zho8gd/UPHOVwj5LOzZvDqI=",
+        "narHash": "sha256-miBQcaURz7iz7WWUVhjP+qZ63LNlPt4GgK7ywMcMklY=",
         "type": "file",
         "url": "https://big.oisd.nl/unbound"
       },
@@ -99,7 +99,7 @@
     "oisd-nsfw": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-0BDYag6oEHdftxAu+RHh7InvkPmsb7dB1xMfXSQPm64=",
+        "narHash": "sha256-jBj4zJEwJ8wNa6m207J+4vAgAGQo3NIReeIr3JYDu8g=",
         "type": "file",
         "url": "https://nsfw.oisd.nl/unbound"
       },
@@ -141,11 +141,11 @@
     "stevenblack-hosts": {
       "flake": false,
       "locked": {
-        "lastModified": 1721522228,
-        "narHash": "sha256-qM7pLw81jjPh8IWAHO8KguwSKrU/97g9aMtIvmsh8SA=",
+        "lastModified": 1722388081,
+        "narHash": "sha256-gJkry8rSaaZw+d+frABPgVjqBznCa7Jr3A5YLChSR4o=",
         "owner": "StevenBlack",
         "repo": "hosts",
-        "rev": "2eaa823eac9129bade167cf89549829b1e11bddb",
+        "rev": "d6039e35d071480c309363eff2690e8b963ab06a",
         "type": "github"
       },
       "original": {
