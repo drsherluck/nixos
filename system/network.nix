@@ -13,7 +13,6 @@
     enable = true;
     oisd-nsfw = true;
     oisd-big = true;
-    stevenblack = false;
     safesearch = true;
   };
 

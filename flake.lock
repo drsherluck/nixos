@@ -20,18 +20,6 @@
         "type": "github"
       }
     },
-    "google-supported-domains": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-8i74yljxv52wfA7Vwq2gGso62aYNZa5ZRB3S/WzU03Y=",
-        "type": "file",
-        "url": "https://www.google.com/supported_domains"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://www.google.com/supported_domains"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -100,30 +88,6 @@
         "type": "github"
       }
     },
-    "oisd-big": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-zihRxr482k3yej1H90darWopLecUr6j1VJju0SNiALQ=",
-        "type": "file",
-        "url": "https://big.oisd.nl/unbound"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://big.oisd.nl/unbound"
-      }
-    },
-    "oisd-nsfw": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Z9Hxw5W1VhaNJWkO5VPefQw9IzH5WSiH/M4aF/fXOxM=",
-        "type": "file",
-        "url": "https://nsfw.oisd.nl/unbound"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://nsfw.oisd.nl/unbound"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -155,35 +119,15 @@
         "type": "github"
       }
     },
-    "stevenblack-hosts": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1722388081,
-        "narHash": "sha256-gJkry8rSaaZw+d+frABPgVjqBznCa7Jr3A5YLChSR4o=",
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "rev": "d6039e35d071480c309363eff2690e8b963ab06a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "StevenBlack",
-        "repo": "hosts",
-        "type": "github"
-      }
-    },
     "unbound-lists": {
       "inputs": {
-        "google-supported-domains": "google-supported-domains",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "oisd-big": "oisd-big",
-        "oisd-nsfw": "oisd-nsfw",
-        "stevenblack-hosts": "stevenblack-hosts"
+        ]
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-D5TXVaaf6TEYyIAm+lNx6O5rDdTNPQK5VdzLqFXuPDY=",
+        "narHash": "sha256-rHh1/B1jYyHRhj8a1ddRWsaqFvruSTxXu0T4+BkrE+s=",
         "path": "flakes/unbound-lists",
         "type": "path"
       },
