@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./tmux
     ./sway
@@ -26,5 +30,12 @@
     includes = [
       {path = config.sops.secrets."git/email".path;}
     ];
+  };
+
+  xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
+    modules = ["network" "volume" "cputemp" "memory" "weather" "time"];
+    network = {
+      interface = "enp4s0";
+    };
   };
 }
