@@ -35,7 +35,7 @@
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
     modules = ["network" "volume" "cputemp" "memory" "weather" "battery" "time"];
     network = {
-      interface = "enp4s0";
+      interface = "wlp4s0";
     };
   };
 }
