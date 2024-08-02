@@ -19,6 +19,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: {
@@ -31,6 +32,7 @@
           home-manager.nixosModules.home-manager
           unbound-lists.nixosModules.unbound-rules
           sops-nix.nixosModules.sops
+          nixos-hardware.nixosModules.common-cpu-intel-cpu-only
           {nixpkgs.overlays = [unbound-lists.overlays.default];}
         ];
         specialArgs = {
@@ -46,6 +48,9 @@
           home-manager.nixosModules.home-manager
           unbound-lists.nixosModules.unbound-rules
           sops-nix.nixosModules.sops
+          nixos-hardware.nixosModules.common-cpu-amd
+          nixos-hardware.nixosModules.common-cpu-amd-zenpower
+          nixos-hardware.nixosModules.common-cpu-amd-pstate
           {nixpkgs.overlays = [unbound-lists.overlays.default];}
         ];
         specialArgs = {
