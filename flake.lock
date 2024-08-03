@@ -127,7 +127,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-rHh1/B1jYyHRhj8a1ddRWsaqFvruSTxXu0T4+BkrE+s=",
+        "narHash": "sha256-58ZaUEI7ZdmbPTmj2blG4tVEp+XhMP9c2mBltKq6m2k=",
         "path": "flakes/unbound-lists",
         "type": "path"
       },

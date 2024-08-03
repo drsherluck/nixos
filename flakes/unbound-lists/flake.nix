@@ -9,13 +9,12 @@
   }: let
     system = "x86_64-linux"; #builtins.currentSystem;
     pkgs = nixpkgs.legacyPackages.${system};
-    script = pkgs.writeScriptBin "unbound-rules" (builtins.readFile ./unbound.sh);
   in {
     packages.x86_64-linux.default = with pkgs;
       stdenv.mkDerivation {
         name = "unbound-lists";
         src = ./unbound.sh;
-        buildInputs = [script bash curl];
+        buildInputs = [bash curl];
         nativeBuildInputs = [makeWrapper];
         unpackPhase = ''
           cp $src $(stripHash $src);
@@ -97,6 +96,21 @@
             };
 
             wantedBy = ["multi-user.target"];
+          };
+
+          # update unbound rules every day on midnight
+          systemd.timers.unbound-rules = {
+            unitConfig = {
+              Description = "unbound-rules: timer for unbound-rules.service";
+              Requires = config.systemd.services.unbound-rules.name;
+            };
+
+            timerConfig = {
+              Unit = config.systemd.services.unbound-rules.name;
+              OnCalendar = "*-*-* 00:00:00";
+            };
+
+            wantedBy = ["timers.target"];
           };
         };
       };
