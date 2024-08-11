@@ -84,11 +84,12 @@
           systemd.services.unbound-rules = {
             unitConfig = {
               Description = "unbound-rules: update unbound rules";
-              After = ["unbound.service"];
+              After = ["unbound.service" "network-online.target"];
+              Wants = ["network-online.target"];
             };
 
             serviceConfig = {
-              Type = "oneshot";
+              Type = "exec";
               ExecStart = updateCommand cfg;
               ExecStartPost = "${pkgs.unbound-lists}/bin/unbound-rules reload";
               StateDirectory = stateDirName;
