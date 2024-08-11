@@ -172,8 +172,8 @@ bindsym XF86AudioMicMute     exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE
 bindsym XF86AudioPlay        exec --no-startup-id playerctl play-pause
 
 # Screen brightness
-bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 2
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 2
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 bindsym $mod+bracketright exec monitor-ddc +10
 bindsym $mod+bracketleft  exec monitor-ddc -10
