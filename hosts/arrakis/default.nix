@@ -99,7 +99,10 @@ in {
   #security.pam.services.swaylock = {};
 
   home-manager = {
-    sharedModules = [inputs.sops-nix.homeManagerModules.sops];
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+      inputs.catppuccin.homeManagerModules.catppuccin
+    ];
     useUserPackages = true;
     useGlobalPkgs = true;
     users.danilo = lib.mkMerge [

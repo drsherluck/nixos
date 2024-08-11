@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +29,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/arrakis
+          catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
           unbound-lists.nixosModules.unbound-rules
@@ -44,6 +46,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/caladan
+          catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
           unbound-lists.nixosModules.unbound-rules

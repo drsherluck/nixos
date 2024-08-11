@@ -17,6 +17,7 @@
     # apps
     mpv
     discord
+    telegram-desktop
     zathura
     typst
     qbittorrent
@@ -67,6 +68,41 @@
       videos = "${home}/videos";
       templates = "${home}/other/templates";
       publicShare = "${home}/other/share";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["blue"];
+        size = "standard";
+        variant = "macchiato";
+      };
+    };
+    cursorTheme = {
+      name = config.home.pointerCursor.name;
+      package = config.home.pointerCursor.package;
+    };
+    gtk3 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+    gtk4 = {
+      extraConfig.gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style = {
+      name = "kvantum";
+      catppuccin = {
+        enable = true;
+        accent = "blue";
+        flavor = "macchiato";
+      };
     };
   };
 }
