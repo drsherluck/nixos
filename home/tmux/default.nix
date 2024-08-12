@@ -1,8 +1,13 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.tmux = {
     enable = true;
-    terminal = "xterm-256color";
+    terminal = "screen-256color-bce";
     plugins = with pkgs; [tmuxPlugins.yank];
+    catppuccin.enable = lib.mkForce false;
     package = pkgs.tmux;
     extraConfig = ''
       unbind C-b
@@ -33,13 +38,17 @@
       unbind Up
       bind -r Up resize-pane -U 5
 
-      set -w -g main-pane-width 85
       # set -g status-bg '#0f0f14'
-      set -g status-fg '#e6e1cf'
+      # set -g status-fg '#e6e1cf'
+
+      set -w -g main-pane-width 85
+      set -g status-style bg=default
+      set -g status-bg default
+      set -g status-fg '#cdd6f4'
       set -g status-left-length 40
       set -g status-position bottom
       set -g status-left '#[fg=#55efc4] #S '
-      set -g status-right "#[fg=#3e4b59]$USER@#h #[fg=#e6e1cf]%l:%M %p"
+      set -g status-right "#[fg=#bac2de]$USER@#h #[fg=#cdd6f4]%l:%M %p"
       set -g status-interval 60
       set -g set-titles-string "#T : #h > #S > #W"
 
