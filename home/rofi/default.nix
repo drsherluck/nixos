@@ -1,10 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   programs.rofi = {
     enable = true;
-    theme = ./theme.rasi;
+    theme = lib.mkForce ./theme.rasi;
   };
 }

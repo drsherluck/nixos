@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     terminal = "xterm-256color";
@@ -38,7 +34,7 @@
       bind -r Up resize-pane -U 5
 
       set -w -g main-pane-width 85
-      set -g status-bg '#0f0f14'
+      # set -g status-bg '#0f0f14'
       set -g status-fg '#e6e1cf'
       set -g status-left-length 40
       set -g status-position bottom

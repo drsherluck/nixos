@@ -1,15 +1,13 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [
     # cli
-    bat
-    btop
     ripgrep
     eza
-    yazi
     jq
     yq-go
     tokei
@@ -18,7 +16,6 @@
     mpv
     discord
     telegram-desktop
-    zathura
     typst
     qbittorrent
     # general
@@ -35,6 +32,24 @@
     # cursors
     bibata-cursors
   ];
+
+  catppuccin = {
+    enable = true;
+    accent = "blue";
+    flavor = "mocha";
+  };
+
+  programs = {
+    bat.enable = true;
+    btop = {
+      enable = true;
+      settings = {
+        theme_background = false;
+      };
+    };
+    yazi.enable = true;
+    zathura.enable = true;
+  };
 
   home.pointerCursor = {
     x11.enable = true;
@@ -73,6 +88,7 @@
 
   gtk = {
     enable = true;
+    catppuccin.enable = lib.mkForce false;
     theme = {
       name = "Catppuccin-Macchiato-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
