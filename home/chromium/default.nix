@@ -9,6 +9,7 @@ _: {
       {id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";} # dark reader
       {id = "khncfooichmfjbepaaaebmommgaepoid";} # unhook
       {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
+      {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # vimium
     ];
     #commandLineArgs = [
     #  "--enable-gpu"

@@ -26,7 +26,6 @@
   sops.defaultSopsFile = ../secrets/arrakis.yaml;
 
   programs.git = {
-    userName = "drsherluck";
     includes = [
       {path = config.sops.secrets."git/email".path;}
     ];

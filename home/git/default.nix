@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   git-prune = pkgs.writeShellScriptBin "git-prune" ''
     #!/usr/bin/env bash
     workpath="''$(realpath "''${1:-'.'}")"
@@ -13,18 +17,30 @@ in {
     git-gone
     git-prune
   ];
+
   programs.git = {
     enable = true;
+    userName = lib.mkDefault "drsherluck";
+
     hooks = {
       pre-push = ./pre-push;
     };
+
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        light = false;
+        side-by-side = false;
+      };
+    };
+
     extraConfig = {
-      commit.gpgsign = true;
       gpg.format = "ssh";
-      # contains "* <contents of .ssh/id_ed25519.pub>"
+      commit.gpgsign = true;
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       user.signingkey = "~/.ssh/id_ed25519.pub";
+      core.editor = "nvim";
     };
-    package = pkgs.git;
   };
 }

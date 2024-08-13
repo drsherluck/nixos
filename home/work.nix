@@ -26,7 +26,6 @@
   sops.defaultSopsFile = ../secrets/caladan.yaml;
 
   programs.git = {
-    userName = "drsherluck";
     includes = [
       {path = config.sops.secrets."git/email".path;}
     ];
