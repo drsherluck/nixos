@@ -1,17 +1,42 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./../modules/unbound-rules.nix
   ];
 
+  # disable resolv and point to local dns resolver
   networking = {
-    firewall.enable = true;
     networkmanager.enable = true;
-
-    # disable resolv and point to local dns resolver
     nameservers = ["127.0.0.1"];
     dhcpcd.extraConfig = "nohook resolv.conf";
     networkmanager.dns = "none";
   };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = lib.mkForce [];
+    allowedUDPPorts = lib.mkForce [];
+    # todo. do this with nftables
+    package = pkgs.iptables;
+    # block all incoming external traffic from external interfaces (enp4s0 or wlp4s0)
+    # allows container-to-container traffic
+    extraCommands = ''
+      iptables -N DOCKER-USER || true
+      iptables -F DOCKER-USER
+      iptables -A DOCKER-USER -i wlp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+      iptables -A DOCKER-USER -i wlp4s0 -j DROP
+      iptables -A DOCKER-USER -i enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+      iptables -A DOCKER-USER -i enp4s0 -j DROP
+      iptables -A DOCKER-USER -j RETURN
+    '';
+  };
+
+  # networking.nftables = {
+  #   enable = true;
+  # };
 
   unbound-rules = {
     enable = true;
