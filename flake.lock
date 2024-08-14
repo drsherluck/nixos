@@ -110,8 +110,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "sops-nix": "sops-nix",
-        "unbound-lists": "unbound-lists"
+        "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
@@ -133,23 +132,6 @@
         "owner": "Mic92",
         "repo": "sops-nix",
         "type": "github"
-      }
-    },
-    "unbound-lists": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-htLyDY5ovIUQFLDqrqnGESwdhPZ3hR8ijtNDxTIapFE=",
-        "path": "flakes/unbound-lists",
-        "type": "path"
-      },
-      "original": {
-        "path": "flakes/unbound-lists",
-        "type": "path"
       }
     }
   },

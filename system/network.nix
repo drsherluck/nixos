@@ -1,4 +1,8 @@
 {lib, ...}: {
+  imports = [
+    ./../modules/unbound-rules.nix
+  ];
+
   networking = {
     firewall.enable = true;
     networkmanager.enable = true;

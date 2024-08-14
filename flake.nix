@@ -12,10 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    unbound-lists = {
-      url = "path:flakes/unbound-lists";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,10 +28,8 @@
           catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
-          unbound-lists.nixosModules.unbound-rules
           sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.common-cpu-intel-cpu-only
-          {nixpkgs.overlays = [unbound-lists.overlays.default];}
         ];
         specialArgs = {
           inherit inputs;
@@ -49,12 +43,10 @@
           catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
-          unbound-lists.nixosModules.unbound-rules
           sops-nix.nixosModules.sops
           nixos-hardware.nixosModules.common-cpu-amd
           nixos-hardware.nixosModules.common-cpu-amd-zenpower
           nixos-hardware.nixosModules.common-cpu-amd-pstate
-          {nixpkgs.overlays = [unbound-lists.overlays.default];}
         ];
         specialArgs = {
           inherit inputs;
