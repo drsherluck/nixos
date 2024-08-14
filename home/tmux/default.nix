@@ -5,11 +5,14 @@
 }: {
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color-bce";
+    terminal = "tmux-256color";
     plugins = with pkgs; [tmuxPlugins.yank];
     catppuccin.enable = lib.mkForce false;
     package = pkgs.tmux;
     extraConfig = ''
+      set -ag terminal-features ",alacritty:RGB,*-256color:RGB"
+      set -ag terminal-features ",alacritty:usstyle,*-256color:usstyle"
+
       unbind C-b
       set -g prefix C-space
 
