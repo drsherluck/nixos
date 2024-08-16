@@ -11,10 +11,11 @@ _: {
       {id = "nngceckbapebfimnlniiiahkandclblb";} # bitwarden
       {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # vimium
     ];
-    #commandLineArgs = [
-    #  "--enable-gpu"
-    #  "--enable-features=UseOzonePlatform"
-    #  "--ozone-platform=wayland"
-    #];
+    commandLineArgs = [
+      "--enable-gpu"
+      "--disable-features=MediaRouter" # disable mDNS
+      # "--enable-features=UseOzonePlatform"
+      # "--ozone-platform=wayland"
+    ];
   };
 }

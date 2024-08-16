@@ -7,6 +7,9 @@
     inconsolata-nerdfont
     vistafonts
     mononoki
+    aileron
+    atkinson-hyperlegible
+    lato
     (callPackage ../pkgs/consolas-nerd-font.nix {})
   ];
 

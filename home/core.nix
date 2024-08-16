@@ -4,6 +4,10 @@
   lib,
   ...
 }: {
+  imports = [
+    ./mpv
+  ];
+
   home.packages = with pkgs; [
     # cli
     ripgrep
@@ -13,7 +17,6 @@
     tokei
     feh
     # apps
-    mpv
     discord
     telegram-desktop
     typst
