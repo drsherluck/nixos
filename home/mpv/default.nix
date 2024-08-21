@@ -43,6 +43,10 @@
       audio-pitch-correction = "yes";
       audio-normalize-downmix = "yes";
       demuxer-mkv-subtitle-preroll = "yes";
+      osc = "yes";
+      osd-bar = "yes";
+      osd-bold = "yes";
+      osd-font = "Consolas";
     };
   };
 }
