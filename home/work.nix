@@ -25,11 +25,21 @@
   sops.secrets."git/email" = {};
   sops.defaultSopsFile = ../secrets/caladan.yaml;
 
-  programs.git = {
-    includes = [
+  programs = {
+    git.includes = [
       {path = config.sops.secrets."git/email".path;}
     ];
+    awscli = {
+      enable = true;
+      package = pkgs.awscli2;
+    };
   };
+
+  home.packages = with pkgs; [
+    kubectl
+    tenv
+    fluxcd
+  ];
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
     modules = ["network" "volume" "cputemp" "memory" "weather" "battery" "time"];

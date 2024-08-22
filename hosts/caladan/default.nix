@@ -8,7 +8,7 @@
   pkgs,
   ...
 }: let
-  settings.user.wm = "test";
+  settings.user.wm = "sway";
 in {
   _module.args = {inherit settings;};
   imports = [
@@ -72,16 +72,6 @@ in {
     EDITOR = "nvim";
     FCEDIT = "nvim";
     NIXOS_FLAKE = "${config.users.users.danilo.home}/nixos";
-    # NIXOS_OZONE_WL = "1";
-    # https://www.reddit.com/r/swaywm/comments/11d89w2/some_workarounds_to_use_sway_with_nvidia/
-    # WLR_NO_HARDWARE_CURSORS = "1";
-    # WLR_RENDERER = "vulkan";
-    # XWAYLAND_NO_GLAMOR = "1";
-    # https://wiki.hyprland.org/Nvidia/#fixing-random-flickering-method-1
-    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    # general wayland
-    # QT_QPA_PLATFORM = "wayland";
-    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 
   # x11
