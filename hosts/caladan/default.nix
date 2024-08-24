@@ -22,6 +22,7 @@ in {
     ../../system/ddcutil.nix
     ../../system/bluetooth.nix
     ../../system/amd.nix
+    ../../system/chromium-policy.nix
   ];
 
   boot.loader = {

@@ -21,6 +21,7 @@ in {
     ../../system/fonts.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
+    ../../system/chromium-policy.nix
   ];
 
   boot.loader = {
