@@ -21,7 +21,7 @@ in {
     ../../system/docker.nix
     ../../system/ddcutil.nix
     ../../system/bluetooth.nix
-    ../../system/amd.nix
+    ../../system/nvidia.nix
     ../../system/chromium-policy.nix
   ];
 

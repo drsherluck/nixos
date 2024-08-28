@@ -26,9 +26,7 @@
   # sops.defaultSopsFile = ../secrets/arrakis.yaml;
 
   programs = {
-    # git.includes = [
-    #   {path = config.sops.secrets."git/email".path;}
-    # ];
+    git.userEmail = "danilobett@gmail.com";
     awscli = {
       enable = true;
       package = pkgs.awscli2;

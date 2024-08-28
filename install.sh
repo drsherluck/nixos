@@ -5,4 +5,4 @@ set -e
 
 repodir="$(git rev-parse --show-toplevel)"
 sudo nixos-install --root /mnt --flake "$repodir#$NIXOS_HOST"
-mv $repodir /mnt/home/danilo/nixos
+cp -r $repodir /mnt/home/danilo/nixos

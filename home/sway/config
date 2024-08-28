@@ -139,7 +139,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 bar {
     font pango:Consolas 8
 	position top
- 	status_command gobar --no-bat
+ 	status_command gobar
 	colors {
 		background #17181f
 		statusline #f8f8f8
