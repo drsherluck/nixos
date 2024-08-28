@@ -22,19 +22,12 @@ caladan (work laptop)
 4. Create variables:
     PATH_TO_REPO="$(git rev-parse --show-toplevel)" # do this inside the git repository
     NIXOS_HOST="<new hostname here>"
-5. Execute:
-    sudo nix --experimental-features "nix-command flakes" \
-        run github:nix-community/disko -- \
-        --mode disko "$PATH_TO_REPO/hosts/$NIXOS_HOST/disko.nix"
-    sudo nixos-generate-config --no-filesystems --root /mnt
-    cp /mnt/etc/nixos/hardware-configuration.nix "$PATH_TO_REPO/hosts/$NIXOS_HOST/hardware.nix"
+5. run disko.sh script
 6. Copy a default.nix from the another host and:
     Change networking.hostName to new hostname
     Change system.stateVersion to the one found in /mnt/etc/nixos/configuration.nix
 7. Add a new nixosConfigurations entry in flane.nix outputs for the new host
-8. Execute:
-    sudo nixos-install --root /mnt --flake '$PATH_TO_REPO#nixos'
-    mv $PATH_TO_REPO /mnt/home/danilo/nixos
+8. run install.sh script
 9. reboot the system
 
 Afterwards setup ssh and ~/.ssh/allowed_signers before commiting and pushing to remote.

@@ -19,38 +19,48 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = inputs: {
+  outputs = inputs: let
+    sharedModules = with inputs; [
+      catppuccin.nixosModules.catppuccin
+      disko.nixosModules.disko
+      home-manager.nixosModules.home-manager
+      sops-nix.nixosModules.sops
+    ];
+  in {
     nixosConfigurations."arrakis" = with inputs;
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hosts/arrakis
-          catppuccin.nixosModules.catppuccin
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          nixos-hardware.nixosModules.common-cpu-intel-cpu-only
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
+        modules =
+          sharedModules
+          ++ [
+            ./hosts/arrakis
+            nixos-hardware.nixosModules.common-cpu-intel-cpu-only
+          ];
+        specialArgs = {inherit inputs;};
       };
     nixosConfigurations."caladan" = with inputs;
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [
-          ./hosts/caladan
-          catppuccin.nixosModules.catppuccin
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
-          nixos-hardware.nixosModules.common-cpu-amd
-          nixos-hardware.nixosModules.common-cpu-amd-zenpower
-          nixos-hardware.nixosModules.common-cpu-amd-pstate
-        ];
-        specialArgs = {
-          inherit inputs;
-        };
+        modules =
+          sharedModules
+          ++ [
+            ./hosts/caladan
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-zenpower
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+          ];
+        specialArgs = {inherit inputs;};
+      };
+    nixosConfigurations."kronin" = with inputs;
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules =
+          sharedModules
+          ++ [
+            ./hosts/kronin
+            nixos-hardware.nixosModules.dell-xps-15-9510
+          ];
+        specialArgs = {inherit inputs;};
       };
   };
 }
