@@ -13,6 +13,7 @@ flake.lock   dependency locks (see flake.nix inputs section)
 
 arrakis (personal desktop)
 caladan (work laptop)
+kronin (personal laptop)
 
 # Installation
 
