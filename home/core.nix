@@ -16,6 +16,7 @@
     yq-go
     tokei
     feh
+    pass
     # apps
     discord
     telegram-desktop
@@ -52,6 +53,12 @@
     };
     yazi.enable = true;
     zathura.enable = true;
+    gpg.enable = true;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   home.pointerCursor = {
