@@ -32,6 +32,8 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 bindsym $mod+b      exec chromium
 
+bindsym --release $mod+i exec slock
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
