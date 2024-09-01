@@ -69,6 +69,10 @@
     package = pkgs.bibata-cursors;
   };
 
+  home.sessionVariables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+  };
+
   xdg = {
     portal = {
       enable = true;
