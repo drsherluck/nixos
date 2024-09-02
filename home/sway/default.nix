@@ -46,6 +46,21 @@
           }
         ];
       }
+      {
+        profile.name = "laptop-dual";
+        profile.outputs = [
+          {
+            criteria = "AU Optronics 0x408D Unknown";
+            scale = 1.0;
+            position = "2560,0";
+          }
+          {
+            criteria = "Iiyama North America PL2730Q 1153895021477";
+            scale = 1.0;
+            position = "0,0";
+          }
+        ];
+      }
     ];
   };
 }
