@@ -27,5 +27,6 @@
   home.sessionVariables = {
     GOOGLE_APPLICATION_CREDENTIALS = "$HOME/.config/gcloud/application_default_credentials.json";
     AWS_VAULT_BACKEND = "pass";
+    TF_PLUGIN_CACHE_DIR = "$HOME/.terraform.d/plugin-cache";
   };
 }
