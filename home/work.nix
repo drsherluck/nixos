@@ -23,13 +23,26 @@
     ./cloud.nix
   ];
 
-  sops.secrets."git/email" = {};
   sops.defaultSopsFile = ../secrets/caladan.yaml;
+  sops.validateSopsFiles = false;
+
+  sops.secrets.git_email = {};
+  sops.secrets.github_token = {
+    sopsFile = "${config.home.homeDirectory}/.sops/secrets/secrets.yaml";
+  };
+
+  home.packages = [
+    pkgs.mycli
+  ];
 
   programs = {
     git.includes = [
-      {path = config.sops.secrets."git/email".path;}
+      {path = config.sops.secrets.git_email.path;}
     ];
+    gh.enable = true;
+    zsh.envExtra = ''
+      export GITHUB_TOKEN="$(cat ${config.sops.secrets.github_token.path})"
+    '';
   };
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {

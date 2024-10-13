@@ -90,7 +90,7 @@ in {
 
   programs.light.enable = true;
   security.polkit.enable = true;
-  # security.pam.services.swaylock = {};
+  security.pam.services.swaylock = {};
   home-manager = {
     sharedModules = [
       inputs.sops-nix.homeManagerModules.sops

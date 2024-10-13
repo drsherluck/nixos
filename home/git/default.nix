@@ -3,6 +3,7 @@
   lib,
   ...
 }: let
+  # note: git branch -vva --format "%(refname) %(upstream)" | rg "refs/heads/([^ ]+) refs/remotes/.*$" -r "$1"
   git-prune = pkgs.writeShellScriptBin "git-prune" ''
     #!/usr/bin/env bash
     workpath="''$(realpath "''${1:-'.'}")"

@@ -11,3 +11,8 @@ creation_rules:
   key_groups:
   - age:
     - *caladan
+- path_regex: .sops/secrets/secrets.yaml$
+  key_groups:
+  - age:
+    - *caladan
+    - *arrakis
