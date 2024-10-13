@@ -40,7 +40,7 @@
     yq -i ".users |= map(with(select(.name == \"*/''$CLUSTER_NAME\");
             .user.exec.command = \"eks-token-cache\" |
             .user.exec.args = [\"''$AWS_REGION\", \"''$CLUSTER_NAME\", \"''$AWS_PROFILE\"]
-        ))" "''$KUBECONFIG"
+        ))" "''${KUBECONFIG:-"''$HOME/.kube/config"}"
   '';
 in {
   home.packages = with pkgs; [
