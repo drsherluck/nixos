@@ -86,4 +86,7 @@ lspconfig.zls.setup {
 lspconfig.typst_lsp.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    settings = {
+        exportPdf = "never",
+    },
 }

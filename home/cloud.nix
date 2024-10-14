@@ -8,7 +8,7 @@
     tokenfile="$(dirname "''${KUBECONFIG:-"''$HOME/.kube/config"}")/.''$2.token"
 
     if [ -f ''$tokenfile ]; then
-      expertime=''$(jq '.status.experationTimestamp' ''$tokenfile | xargs -rn1 date +%s -d)
+      expertime=''$(jq '.status.expirationTimestamp' ''$tokenfile | xargs -rn1 date +%s -d)
       if [[ ''$((now-30)) -gt ''$expertime ]]; then
         gentoken="true"
       fi
