@@ -2,7 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  chromium-personal = pkgs.writeShellScriptBin "chromium-personal" ''
+    mkdir -p "''$HOME/personal/.chromium"
+    chromium --user-data-dir="''$HOME/personal/.chromium"
+  '';
+in {
   imports = [
     ./tmux
     ./sway
@@ -33,6 +38,7 @@
 
   home.packages = [
     pkgs.mycli
+    chromium-personal
   ];
 
   programs = {
