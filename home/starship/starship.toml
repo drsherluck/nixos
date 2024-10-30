@@ -3,6 +3,7 @@ $username\
 $hostname\
 $kubernetes\
 $directory\
+${custom.direnv}\
 $git_branch\
 $git_state\
 $cmd_duration\
@@ -46,3 +47,8 @@ style = "bright-black"
 format = '([\[$context\]]($style)) '
 style = "bold bright-white"
 disabled = false
+
+[custom.direnv]
+format = '[\(direnv\)]($style) '
+style = "white"
+when = "printenv DIRENV_FILE"

@@ -41,6 +41,10 @@
             .user.exec.command = \"eks-token-cache\" |
             .user.exec.args = [\"''$AWS_REGION\", \"''$CLUSTER_NAME\", \"''$AWS_PROFILE\"]
         ))" "''${KUBECONFIG:-"''$HOME/.kube/config"}"
+
+    kubectl config get-contexts -o name \
+      | rg "''$CLUSTER_NAME" \
+      | xargs -rI{} kubectl config rename-context {} "aws:''$CLUSTER_NAME"
   '';
 in {
   home.packages = with pkgs; [

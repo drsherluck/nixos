@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     # cli
+    age
     ripgrep
     eza
     jq
