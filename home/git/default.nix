@@ -9,7 +9,7 @@
     workpath="''$(realpath "''${1:-'.'}")"
     find "''$workpath" -maxdepth 1 -type d -print0 | parallel --will-cite -0 '
       echo {} && cd {} && [[ -d ".git" ]] &&
-      (git-gone list | rg -v "''$(git rev-parse --abbrev-ref HEAD)" | xargs -rn1 git branch -D)
+      (git fetch --prune --all -q; git-gone list | rg -v "''$(git rev-parse --abbrev-ref HEAD)" | xargs -rn1 git branch -D)
     '
   '';
 in {
