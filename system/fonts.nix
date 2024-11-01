@@ -2,7 +2,7 @@
   fonts.packages = with pkgs; [
     openmoji-color
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-lgc-plus
     inconsolata-nerdfont
     vistafonts
