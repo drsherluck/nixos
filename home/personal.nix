@@ -2,7 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}:
+let
+  chromium-work = pkgs.writeShellScriptBin "chromium-work" ''
+    mkdir -p "''$HOME/work/.chromium"
+    chromium --user-data-dir="''$HOME/work/.chromium"
+  '';
+in {
   imports = [
     ./tmux
     ./sway
@@ -31,6 +37,10 @@
       {path = config.sops.secrets."git/email".path;}
     ];
   };
+
+  home.packages = [
+    chromium-work
+  ];
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
     modules = ["network" "volume" "cputemp" "memory" "weather" "time"];
