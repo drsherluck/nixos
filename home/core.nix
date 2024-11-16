@@ -55,6 +55,7 @@
     yazi.enable = true;
     zathura.enable = true;
     gpg.enable = true;
+    spotify-player.enable = true;
   };
 
   services.gpg-agent = {
