@@ -86,6 +86,7 @@ in {
           p.tree-sitter-cmake
           p.tree-sitter-dockerfile
           p.tree-sitter-vim
+          p.tree-sitter-just
         ]);
         config = toLuaFile ./config/plugins/treesitter.lua;
       }
