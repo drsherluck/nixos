@@ -1,6 +1,9 @@
 local telescope = require('telescope')
 telescope.setup {
     defaults = {
+        file_ignore_patterns = {
+            ".git/",
+        },
         mappings = {
             n = {
                 ["q"] = require("telescope.actions").close

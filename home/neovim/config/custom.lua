@@ -20,7 +20,7 @@ vim.filetype.add({
 
 -- set indent to two for some filetypes
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'nix', 'terraform' },
+    pattern = { 'nix', 'terraform', 'toml' },
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.tabstop = 2

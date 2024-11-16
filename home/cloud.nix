@@ -42,6 +42,8 @@
             .user.exec.args = [\"''$AWS_REGION\", \"''$CLUSTER_NAME\", \"''$AWS_PROFILE\"]
         ))" "''${KUBECONFIG:-"''$HOME/.kube/config"}"
 
+    kubectl config delete-context "aws:''$CLUSTER_NAME" 2> /dev/null || true
+
     kubectl config get-contexts -o name \
       | rg "''$CLUSTER_NAME" \
       | xargs -rI{} kubectl config rename-context {} "aws:''$CLUSTER_NAME"
