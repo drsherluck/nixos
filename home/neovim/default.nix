@@ -19,7 +19,7 @@ in {
       nil
       gopls
       terraform-ls
-      typst-lsp
+      tinymist
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -82,7 +82,7 @@ in {
           p.tree-sitter-toml
           p.tree-sitter-json
           p.tree-sitter-markdown
-          p.tree-sitter-typst
+          # p.tree-sitter-typst
           p.tree-sitter-cmake
           p.tree-sitter-dockerfile
           p.tree-sitter-vim

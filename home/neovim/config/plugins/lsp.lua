@@ -83,7 +83,7 @@ lspconfig.zls.setup {
     capabilities = capabilities,
 }
 
-lspconfig.typst_lsp.setup {
+lspconfig.tinymist.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
