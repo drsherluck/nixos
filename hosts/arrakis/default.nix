@@ -19,6 +19,7 @@ in {
     ../../system/nix.nix
     ../../system/nvidia.nix
     ../../system/fonts.nix
+    ../../system/bluetooth.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
     ../../system/chromium-policy.nix
