@@ -64,6 +64,12 @@
           ++ [
             ./hosts/kronin
             nixos-hardware.nixosModules.dell-xps-15-9510
+            nixos-hardware.nixosModules.dell-xps-15-9510-nvidia
+            # https://github.com/NixOS/nixpkgs/issues/328972
+            ({lib, ...}: {
+              hardware.nvidia.modesetting.enable = lib.mkForce false;
+              boot.kernelParams = ["nvidia-drm.modeset=1"];
+            })
           ];
         specialArgs = {inherit inputs;};
       };
