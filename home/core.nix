@@ -1,11 +1,21 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: {
   imports = [
+    ./alacritty
+    ./chromium
+    ./dunst
+    ./fastfetch
+    ./ghostty
+    ./git
     ./mpv
+    ./neovim
+    ./rofi
+    ./starship
+    ./tmux
+    ./zsh
   ];
 
   home.packages = with pkgs; [

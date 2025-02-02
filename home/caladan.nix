@@ -9,23 +9,13 @@
   '';
 in {
   imports = [
-    ./tmux
-    ./sway
-    ./i3
-    ./foot
-    ./alacritty
-    ./rofi
-    ./starship
-    ./chromium
-    ./dunst
-    ./zsh
-    ./fastfetch
-    ./neovim
-    ./git
-    ./sops
-    ./dev.nix
-    ./core.nix
     ./cloud.nix
+    ./core.nix
+    ./dev.nix
+    ./foot
+    ./i3
+    ./sops
+    ./sway
   ];
 
   sops.defaultSopsFile = ../secrets/caladan.yaml;

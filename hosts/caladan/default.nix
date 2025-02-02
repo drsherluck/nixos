@@ -103,7 +103,7 @@ in {
         programs.home-manager.enable = true;
         home.stateVersion = config.system.stateVersion;
       }
-      (import ../../home/work.nix)
+      (import ../../home/caladan.nix)
     ];
   };
 

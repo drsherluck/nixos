@@ -106,7 +106,7 @@ in {
         programs.home-manager.enable = true;
         home.stateVersion = config.system.stateVersion;
       }
-      (import ../../home/personal.nix)
+      (import ../../home/arrakis.nix)
     ];
   };
 
