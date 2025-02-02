@@ -20,7 +20,9 @@
       window-padding-y = 0;
       window-theme = "dark";
       background = "17181f";
-      foreground = "f8f8f8";
+      # normally f8f8f8, but scaling is different than alacritty
+      # the high contrast is not that great for the eyes
+      foreground = "f0f0f0";
       palette = [
         "0=17181f"
         "1=ff6b81"
