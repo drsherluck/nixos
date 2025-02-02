@@ -58,3 +58,15 @@ vim.keymap.set('n', '<leader>ff', find_files, {})
 vim.keymap.set('n', '<leader>fg', live_grep, {})
 vim.keymap.set('n', '<leader>fb', ts.buffers, {})
 vim.keymap.set('n', '<leader>fh', ts.help_tags, {})
+
+--- go templated files
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})

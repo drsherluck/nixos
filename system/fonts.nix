@@ -4,7 +4,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-lgc-plus
-    inconsolata-nerdfont
+    nerd-fonts.inconsolata
     vistafonts
     mononoki
     aileron

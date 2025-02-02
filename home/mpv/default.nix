@@ -1,7 +1,6 @@
-{lib, ...}: {
+{...}: {
   programs.mpv = {
     enable = true;
-    catppuccin.enable = lib.mkForce false;
     config = {
       # profile = "gpu-hq";
       slang = "eng";

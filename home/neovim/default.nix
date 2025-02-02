@@ -72,6 +72,7 @@ in {
           p.tree-sitter-jq
           p.tree-sitter-python
           p.tree-sitter-go
+          p.tree-sitter-gotmpl
           p.tree-sitter-zig
           p.tree-sitter-hcl
           p.tree-sitter-cpp
@@ -103,4 +104,11 @@ in {
       ${builtins.readFile ./config/custom.lua}
     '';
   };
+
+  # inject-go-tmpl function configured in config/custom.lua
+  xdg.configFile."nvim/queries/gotmpl/injections.scm".text = ''
+    ((text) @injection.content
+     (#set! injection.language "html")
+     (#set! injection.combined))
+  '';
 }

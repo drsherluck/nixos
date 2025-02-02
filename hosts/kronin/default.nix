@@ -25,7 +25,7 @@ in {
     ../../system/chromium-policy.nix
   ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {

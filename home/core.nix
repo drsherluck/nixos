@@ -43,6 +43,15 @@
     enable = true;
     accent = "blue";
     flavor = "mocha";
+    # overrides
+    dunst.flavor = "macchiato";
+    gtk.enable = false;
+    mpv.enable = false;
+    tmux.enable = false;
+    kvantum = {
+      accent = "blue";
+      flavor = "macchiato";
+    };
   };
 
   programs = {
@@ -105,7 +114,6 @@
 
   gtk = {
     enable = true;
-    catppuccin.enable = lib.mkForce false;
     theme = {
       name = "Catppuccin-Macchiato-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
@@ -131,11 +139,6 @@
     platformTheme.name = "kvantum";
     style = {
       name = "kvantum";
-      catppuccin = {
-        enable = true;
-        accent = "blue";
-        flavor = "macchiato";
-      };
     };
   };
 }

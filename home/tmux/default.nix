@@ -1,13 +1,8 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     terminal = "tmux-256color";
     plugins = with pkgs; [tmuxPlugins.yank];
-    catppuccin.enable = lib.mkForce false;
     package = pkgs.tmux;
     extraConfig = ''
       set -ag terminal-features ",alacritty:RGB,*-256color:RGB"
