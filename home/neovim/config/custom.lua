@@ -53,6 +53,7 @@ local function live_grep()
     ts.live_grep(make_cwd_opts())
 end
 
+vim.keymap.set('n', '<leader>fd', ts.find_files, {})
 vim.keymap.set('n', '<leader>ff', find_files, {})
 vim.keymap.set('n', '<leader>fg', live_grep, {})
 vim.keymap.set('n', '<leader>fb', ts.buffers, {})

@@ -79,6 +79,7 @@ in {
           p.tree-sitter-rust
           p.tree-sitter-make
           p.tree-sitter-yaml
+          p.tree-sitter-helm
           p.tree-sitter-toml
           p.tree-sitter-json
           p.tree-sitter-markdown

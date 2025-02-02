@@ -18,6 +18,7 @@
     tokei
     feh
     pass
+    lz4
     # apps
     discord
     telegram-desktop

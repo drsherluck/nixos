@@ -4,12 +4,17 @@
   ...
 }: let
   # note: git branch -vva --format "%(refname) %(upstream)" | rg "refs/heads/([^ ]+) refs/remotes/.*$" -r "$1"
-  git-prune = pkgs.writeShellScriptBin "git-prune" ''
+  git-prune = pkgs.writeShellScriptBin "gpru" ''
     #!/usr/bin/env bash
-    workpath="''$(realpath "''${1:-'.'}")"
+    workpath="''$(pwd)"
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+      git fetch --prune --all -q; git-gone list | rg -v "''$(git rev-parse --abbrev-ref HEAD)" | xargs -rn1 git branch -D
+      exit 0
+    fi
     find "''$workpath" -maxdepth 1 -type d -print0 | parallel --will-cite -0 '
-      echo {} && cd {} && [[ -d ".git" ]] &&
-      (git fetch --prune --all -q; git-gone list | rg -v "''$(git rev-parse --abbrev-ref HEAD)" | xargs -rn1 git branch -D)
+      echo {} && cd {} && if git rev-parse --git-dir > /dev/null 2>&1; then
+        git fetch --prune --all -q; git-gone list | rg -v "''$(git rev-parse --abbrev-ref HEAD)" | xargs -rn1 git branch -D
+      fi
     '
   '';
 in {
