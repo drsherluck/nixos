@@ -55,6 +55,7 @@ in {
     kubectl
     tenv
     pass
+    kubernetes-helm
     fluxcd
     eks-token-cache
     eks-configure-kube
