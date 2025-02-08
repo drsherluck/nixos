@@ -60,6 +60,11 @@ in {
     eks-configure-kube
   ];
 
+  catppuccin.k9s.transparent = true;
+  programs.k9s = {
+    enable = true;
+  };
+
   programs.awscli = {
     enable = true;
     package = pkgs.awscli2;
@@ -70,6 +75,8 @@ in {
   services.gpg-agent = {
     enable = lib.mkForce true;
     pinentryPackage = lib.mkDefault pkgs.pinentry-curses;
+    defaultCacheTtl = 3600;
+    maxCacheTtl = 21600;
   };
 
   home.sessionVariables = {

@@ -12,6 +12,7 @@
     # core
     gnumake
     git
+    gh
     cmake
     pkg-config
 
