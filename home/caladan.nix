@@ -35,7 +35,6 @@ in {
     git.includes = [
       {path = config.sops.secrets.git_email.path;}
     ];
-    gh.enable = true;
     zsh.envExtra = ''
       export GITHUB_TOKEN="$(cat ${config.sops.secrets.github_token.path})"
     '';
