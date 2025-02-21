@@ -24,6 +24,22 @@ in {
 
     plugins = with pkgs.vimPlugins; [
       {
+        plugin = neoscroll-nvim;
+        config = toLua ''
+          require('neoscroll').setup()
+        '';
+      }
+      {
+        plugin = bigfile-nvim;
+        config = toLuaFile ./config/plugins/bigfile.lua;
+      }
+      {
+        plugin = indent-blankline-nvim;
+        config = toLua ''
+          require('ibl').setup()
+        '';
+      }
+      {
         plugin = nvim-lspconfig;
         config = toLuaFile ./config/plugins/lsp.lua;
       }
