@@ -36,7 +36,9 @@ in {
       {
         plugin = indent-blankline-nvim;
         config = toLua ''
-          require('ibl').setup()
+          require('ibl').setup {
+            scope = { show_start = false }
+          }
         '';
       }
       {
