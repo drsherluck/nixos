@@ -12,6 +12,7 @@ local on_attach = function(_, bufnr)
     bufmap('gi', vim.lsp.buf.implementation)
     bufmap('<leader>D', vim.lsp.buf.type_definition)
     bufmap('K', vim.lsp.buf.hover)
+    bufmap('gr', require('telescope.builtin').lsp_references)
 
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
