@@ -61,6 +61,7 @@ in {
       "video"
       "i2c"
       "docker"
+      "gamemode"
     ];
   };
 
@@ -141,6 +142,8 @@ in {
       proton-ge-bin
     ];
   };
+
+  programs.gamemode.enable = true;
 
   system.stateVersion = "23.11"; # do not touch
 }
