@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     catppuccin.url = "github:catppuccin/nix";
     disko = {
       url = "github:nix-community/disko";
@@ -19,16 +20,24 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
     sharedModules = with inputs; [
       catppuccin.nixosModules.catppuccin
       disko.nixosModules.disko
       home-manager.nixosModules.home-manager
       sops-nix.nixosModules.sops
     ];
-  in {
-    nixosConfigurations."arrakis" = with inputs;
-      nixpkgs.lib.nixosSystem {
+  in rec {
+    overlays = import ./overlays {inherit inputs;};
+    nixosConfigurations = with inputs; {
+      arrakis = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
           sharedModules
@@ -41,10 +50,9 @@
               boot.kernelParams = ["nvidia-drm.modeset=1"];
             })
           ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
       };
-    nixosConfigurations."caladan" = with inputs;
-      nixpkgs.lib.nixosSystem {
+      caladan = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
           sharedModules
@@ -54,10 +62,9 @@
             nixos-hardware.nixosModules.common-cpu-amd-zenpower
             nixos-hardware.nixosModules.common-cpu-amd-pstate
           ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
       };
-    nixosConfigurations."kronin" = with inputs;
-      nixpkgs.lib.nixosSystem {
+      kronin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
           sharedModules
@@ -71,7 +78,8 @@
               boot.kernelParams = ["nvidia-drm.modeset=1"];
             })
           ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
       };
+    };
   };
 }

@@ -41,7 +41,7 @@
     grim
     slurp
     # i3
-    maim
+    stable.maim
     xclip
     # gtk
     dconf

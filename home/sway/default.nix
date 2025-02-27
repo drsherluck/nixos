@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
     wl-clipboard
-    xwaylandvideobridge
+    kdePackages.xwaylandvideobridge
   ];
 
   services.kanshi = {

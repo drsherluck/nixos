@@ -13,7 +13,8 @@ rustPlatform.buildRustPackage rec {
     rev = "408764f2b42f4fea28e03a04f9826a8fee699086";
     hash = "sha256-ulAxffFWCHzuM1/GzSloesoMYQ8Lzc/7yvLRmHeeubs=";
   };
-  cargoHash = "sha256-9OPWhbyg/tmc9xg/3dj+OtxVxoQ3tRDuF1yXi1jBAuY=";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-9JSNEHXRv4lZ7ek9OC7rI8kKFc7VnweNpIU6xC+j6yE=";
   nativeBuildInputs = [scdoc installShellFiles];
   preFixup = ''
     installManPage $releaseDir/build/${name}-*/out/${name}.1

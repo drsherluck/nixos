@@ -1,4 +1,5 @@
 {
+  outputs,
   config,
   pkgs,
   ...
@@ -35,6 +36,7 @@ in {
     allowUnfree = true;
     chromium.enableWideVine = true;
   };
+  nixpkgs.overlays = [outputs.overlays.stable-packages];
 
   environment.systemPackages = [
     nixos-rebuild
