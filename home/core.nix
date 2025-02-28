@@ -29,6 +29,7 @@
     feh
     pass
     lz4
+    nix-search
     # apps
     discord
     telegram-desktop
