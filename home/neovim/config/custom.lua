@@ -70,3 +70,15 @@ vim.filetype.add({
     ["helmfile.*%.ya?ml"] = "helm",
   },
 })
+
+-- enable folding
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function()
+        if require('nvim-treesitter.parsers').has_parser() then
+            vim.o.foldmethod = 'expr'
+            vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+        else
+            vim.o.foldmethod = 'syntax'
+        end
+    end
+})

@@ -11,6 +11,7 @@ vim.o.updatetime = 250
 vim.o.wrap = false
 vim.o.showbreak = "↳  "
 vim.o.scrolloff = 10
+vim.o.foldenable = false
 -- use ripgrep
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.grepprg = "rg --hidden --vimgrep --smart-case --"

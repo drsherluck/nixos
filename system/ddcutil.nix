@@ -7,7 +7,7 @@
   ddcbright = pkgs.writeScriptBin "ddcbright" ''
     #!/usr/bin/env bash
     num=$(xrandr --listactivemonitors | rg "^Monitors: ([0-9]+)$" -r '$1')
-    printf '%s\n' $(seq 1 $num) | xargs -I% -P1 ddcutil setvcp --mccs=2.2 --noconfig --noverify -d % 10 "$@"
+    printf '%s\n' $(seq 1 $num) | xargs -I% -P1 ddcutil setvcp --mccs=2.2 --noconfig --noverify -d % 10 "$@" > /dev/null
   '';
 in {
   hardware.i2c.enable = true;
