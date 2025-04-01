@@ -33,6 +33,7 @@
     oisd-nsfw = true;
     oisd-big = true;
     safesearch = true;
+    youtube = true;
   };
 
   services.unbound = {

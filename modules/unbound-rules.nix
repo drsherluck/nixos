@@ -13,6 +13,7 @@ with lib; let
     lib.concatStringsSep " " (["${package}/bin/unbound-rules update"]
       ++ optional (opts.oisd-nsfw) "oisd-nsfw"
       ++ optional (opts.oisd-big) "oisd-big"
+      ++ optional (opts.youtube) "youtube"
       ++ optional (opts.safesearch) "safesearch");
 in {
   options.unbound-rules = {
@@ -20,6 +21,7 @@ in {
     oisd-nsfw = mkEnableOption "include oisd-nsfw unbound rules";
     oisd-big = mkEnableOption "include oisd-big unbound rules for block ads and malware";
     safesearch = mkEnableOption "include force safesearch rules";
+    youtube = mkEnableOption "block youtube";
   };
 
   config = mkIf (cfg.enable && config.services.unbound.enable) {
@@ -27,7 +29,8 @@ in {
       []
       ++ optional (cfg.oisd-big) "\"${stateDir}/oisd-big\""
       ++ optional (cfg.oisd-nsfw) "\"${stateDir}/oisd-nsfw\""
-      ++ optional (cfg.safesearch) "\"${stateDir}/safesearch\"";
+      ++ optional (cfg.safesearch) "\"${stateDir}/safesearch\""
+      ++ optional (cfg.youtube) "\"${stateDir}/youtube\"";
 
     environment.systemPackages = [package];
 

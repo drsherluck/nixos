@@ -6,6 +6,25 @@ function fatal {
   exit 1
 }
 
+function youtube {
+  echo "updating $1"
+
+  printf 'local-zone: "%s" always_null\n' > $1 \
+    'googlevideo.com' \
+    'youtu.be' \
+    'youtube-nocookie.com' \
+    'youtube.googleapis.com' \
+    'youtubeeducation.com' \
+    'youtubegaming.com' \
+    'youtubei.googleapis.com' \
+    'yt3.ggpht.com' \
+    'ytimg.com'
+
+  for tld in "com" "nl" "be" "fr" "pl" "de" "co.uk"; do
+    printf 'local-zone: "%s" always_null\n' "youtube.$tld"
+  done >> $1
+}
+
 function safesearch {
   echo "updating $1"
   google_domains="$(curl -sq --fail "https://www.google.com/supported_domains")"
@@ -59,6 +78,8 @@ function update {
     case "$i" in
       safesearch) safesearch "$CONFIG_DIR/safesearch"
       ;;
+      youtube) youtube "$CONFIG_DIR/youtube"
+      ;;
       oisd-big) oisd "https://big.oisd.nl/unbound" "$CONFIG_DIR/oisd-big"
       ;;
       oisd-nsfw) oisd "https://nsfw.oisd.nl/unbound" "$CONFIG_DIR/oisd-nsfw"
@@ -78,6 +99,7 @@ function create_files {
   touch "$CONFIG_DIR/safesearch"
   touch "$CONFIG_DIR/oisd-big"
   touch "$CONFIG_DIR/oisd-nsfw"
+  touch "$CONFIG_DIR/youtube"
 }
 
 for i in "$@"; do
