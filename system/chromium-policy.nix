@@ -3,7 +3,7 @@ _: {
   environment.etc."chromium/policies/managed/default.json" = {
     enable = true;
     text = ''
-      { "EnableMediaRouter": false }
+      { "EnableMediaRouter": false, "ExtensionManifestV2Availability": 2 }
     '';
   };
 }

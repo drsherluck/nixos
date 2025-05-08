@@ -46,7 +46,12 @@ in {
       commit.gpgsign = true;
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       user.signingkey = "~/.ssh/id_ed25519.pub";
-      core.editor = "nvim";
+      core = {
+        editor = "nvim";
+        whitespace = "error";
+        preloadindex = true;
+        compression = 9;
+      };
     };
   };
 

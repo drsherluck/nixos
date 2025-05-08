@@ -95,7 +95,7 @@ in {
   home-manager = {
     sharedModules = [
       inputs.sops-nix.homeManagerModules.sops
-      inputs.catppuccin.homeManagerModules.catppuccin
+      inputs.catppuccin.homeModules.catppuccin
     ];
     useUserPackages = true;
     useGlobalPkgs = true;

@@ -30,10 +30,10 @@
 
   unbound-rules = {
     enable = true;
-    oisd-nsfw = true;
+    oisd-nsfw = false;
     oisd-big = true;
-    safesearch = true;
-    youtube = true;
+    safesearch = false;
+    youtube = false;
   };
 
   services.unbound = {

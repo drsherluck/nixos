@@ -78,6 +78,13 @@ in {
     NIXOS_FLAKE = "${config.users.users.danilo.home}/nixos";
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    icu
+  ];
+
   # x11
   services.xserver = {
     enable = true;
@@ -98,7 +105,7 @@ in {
   home-manager = {
     sharedModules = [
       inputs.sops-nix.homeManagerModules.sops
-      inputs.catppuccin.homeManagerModules.catppuccin
+      inputs.catppuccin.homeModules.catppuccin
     ];
     useUserPackages = true;
     useGlobalPkgs = true;
