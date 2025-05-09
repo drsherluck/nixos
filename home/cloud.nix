@@ -75,7 +75,7 @@ in {
 
   services.gpg-agent = {
     enable = lib.mkForce true;
-    pinentryPackage = lib.mkDefault pkgs.pinentry-curses;
+    pinentry.package = lib.mkDefault pkgs.pinentry-curses;
     defaultCacheTtl = 3600;
     maxCacheTtl = 21600;
   };
