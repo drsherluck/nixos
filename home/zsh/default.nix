@@ -33,6 +33,7 @@
       gdf = "git diff";
       gch = "git checkout";
       gsw = "git switch";
+      gsd = "git switch \"$(git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/)\" && gpru && gl";
       glo = "git log --oneline";
       ff = "fastfetch";
     };

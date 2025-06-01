@@ -22,6 +22,7 @@ in {
     parallel
     git-gone
     git-prune
+    git-filter-repo
   ];
 
   programs.git = {
