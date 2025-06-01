@@ -35,6 +35,7 @@
     telegram-desktop
     typst
     qbittorrent
+    pavucontrol
     # general
     libnotify
     hsetroot
