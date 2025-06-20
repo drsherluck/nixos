@@ -53,6 +53,7 @@ in {
     google-cloud-sdk
     aws-vault
     kubectl
+    kubectl-cnpg
     tenv
     pass
     kubernetes-helm
