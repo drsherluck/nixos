@@ -30,6 +30,7 @@ in {
   home.packages = [
     pkgs.jrnl
     pkgs.protontricks
+    pkgs.obsidian
     chromium-work
   ];
 
