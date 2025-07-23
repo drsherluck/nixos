@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     catppuccin.url = "github:catppuccin/nix";
     disko = {
       url = "github:nix-community/disko";
@@ -36,7 +36,13 @@
     ];
   in rec {
     overlays = import ./overlays {inherit inputs;};
-    nixosConfigurations = with inputs; {
+    nixosConfigurations = with inputs; let
+      # https://github.com/NixOS/nixpkgs/issues/328972
+      disable-nvidia-modeset = {lib, ...}: {
+        hardware.nvidia.modesetting.enable = lib.mkForce false;
+        boot.kernelParams = ["nvidia-drm.modeset=1"];
+      };
+    in {
       arrakis = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
@@ -44,11 +50,7 @@
           ++ [
             ./hosts/arrakis
             nixos-hardware.nixosModules.common-cpu-intel-cpu-only
-            # https://github.com/NixOS/nixpkgs/issues/328972
-            ({lib, ...}: {
-              hardware.nvidia.modesetting.enable = lib.mkForce false;
-              boot.kernelParams = ["nvidia-drm.modeset=1"];
-            })
+            disable-nvidia-modeset
           ];
         specialArgs = {inherit inputs outputs;};
       };
@@ -72,13 +74,32 @@
             ./hosts/kronin
             nixos-hardware.nixosModules.dell-xps-15-9510
             nixos-hardware.nixosModules.dell-xps-15-9510-nvidia
-            # https://github.com/NixOS/nixpkgs/issues/328972
-            ({lib, ...}: {
-              hardware.nvidia.modesetting.enable = lib.mkForce false;
-              boot.kernelParams = ["nvidia-drm.modeset=1"];
-            })
+            disable-nvidia-modeset
           ];
         specialArgs = {inherit inputs outputs;};
+      };
+      # https://nixos.wiki/wiki/Creating_a_NixOS_live_CD
+      # https://nix.dev/tutorials/nixos/building-bootable-iso-image.html
+      # build:   nix build .#nixosConfigurations.iso.config.system.build.images.isoImage
+      # install: sudo dd if=result/iso/*.iso of=/dev/sdX bs=4M status=progress
+      minimal-iso-x64 = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          "${nixpkgs-stable}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ({pkgs, ...}: {
+            isoImage.squashfsCompression = "lz4";
+            networking.wireless.enable = pkgs.lib.mkForce false;
+            networking.networkmanager.enable = true;
+            environment.systemPackages = with pkgs; [
+              ripgrep
+              git
+              zsh
+              neovim
+              tree
+              nvme-cli
+            ];
+          })
+        ];
       };
     };
   };
