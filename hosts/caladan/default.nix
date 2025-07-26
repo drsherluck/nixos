@@ -17,6 +17,7 @@ in {
     ../../system/network.nix
     ../../system/keyboard.nix
     ../../system/nix.nix
+    ../../system/nvidia.nix
     ../../system/fonts.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
@@ -130,5 +131,15 @@ in {
   programs.ssh.startAgent = true;
   programs.ssh.agentTimeout = "6h";
 
-  system.stateVersion = "24.05"; # do not touch
+  # power management
+  services.tlp.enable = false;
+  services.auto-cpufreq.enable = true;
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowHybridSleep=yes
+    AllowSuspendThenHibernate=yes
+  '';
+
+  system.stateVersion = "25.05"; # do not touch
 }

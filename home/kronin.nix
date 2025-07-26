@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./cloud.nix
     ./core.nix
@@ -18,20 +14,6 @@
 
   programs = {
     git.userEmail = "danilobett@gmail.com";
-  };
-
-  services.kanshi = {
-    settings = lib.mkForce [
-      {
-        profile.name = "laptop";
-        profile.outputs = [
-          {
-            criteria = "eDP-1";
-            scale = 2.0;
-          }
-        ];
-      }
-    ];
   };
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {

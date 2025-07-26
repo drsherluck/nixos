@@ -15,7 +15,7 @@ for_window [class="^.*"] border pixel 2
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return exec footclient
+bindsym $mod+Return exec ghostty
 bindsym $mod+b exec chromium
 
 # kill focused window
