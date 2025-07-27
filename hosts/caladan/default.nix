@@ -141,5 +141,18 @@ in {
     AllowSuspendThenHibernate=yes
   '';
 
+  hardware.nvidia = {
+    powerManagement.enable = true;
+    prime = {
+      offload = {
+        enable = lib.mkOverride 990 true;
+        enableOffloadCmd = true;
+      };
+      sync.enable = true;
+      nvidiaBusId = "PCI:100:0:0";
+      amdgpuBusId = "PCI:101:0:0";
+    };
+  };
+
   system.stateVersion = "25.05"; # do not touch
 }
