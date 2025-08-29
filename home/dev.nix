@@ -32,6 +32,8 @@
     gpu-viewer
   ];
 
+  programs.lazydocker.enable = true;
+
   home.sessionVariables = {
     GOPATH = "$HOME/.local/share/go";
   };
