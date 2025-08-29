@@ -6,6 +6,7 @@
       size = 5000;
       path = "$HOME/.zsh_history";
       ignoreAllDups = true;
+      extended = true;
     };
 
     enableCompletion = true;
@@ -21,12 +22,11 @@
       ls = "eza --color=auto";
       l = "eza --long --header --no-permissions --octal-permissions --group-directories-first --no-quotes -a";
       ll = "eza --long --header --no-permissions --octal-permissions --group-directories-first --no-quotes";
-      lt = "eza --tree --level 2 --long --group-directories-first --no-permissions --no-time --no-user --no-quotes";
+      lt = "eza --tree --level 2 --long --group-directories-first --no-permissions --no-time --no-user --no-quotes --ignore-glob='__pycache__'";
       cg = "cd `git rev-parse --show-toplevel`";
       tf = "terraform";
       tree = "eza --tree --group-directories-first";
       cat = "bat";
-      #make = "make -j8";
       ga = "git add";
       gl = "git pull";
       gp = "git push";
