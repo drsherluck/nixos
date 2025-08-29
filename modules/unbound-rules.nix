@@ -22,6 +22,10 @@ in {
     oisd-big = mkEnableOption "include oisd-big unbound rules for block ads and malware";
     safesearch = mkEnableOption "include force safesearch rules";
     youtube = mkEnableOption "block youtube";
+    extra = mkOption {
+      type = with lib.types; str;
+      default = "";
+    };
   };
 
   config = mkIf (cfg.enable && config.services.unbound.enable) {
@@ -30,7 +34,8 @@ in {
       ++ optional (cfg.oisd-big) "\"${stateDir}/oisd-big\""
       ++ optional (cfg.oisd-nsfw) "\"${stateDir}/oisd-nsfw\""
       ++ optional (cfg.safesearch) "\"${stateDir}/safesearch\""
-      ++ optional (cfg.youtube) "\"${stateDir}/youtube\"";
+      ++ optional (cfg.youtube) "\"${stateDir}/youtube\""
+      ++ [(builtins.toFile "unbound.extra" cfg.extra)];
 
     environment.systemPackages = [package];
 
