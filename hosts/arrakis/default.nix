@@ -138,7 +138,24 @@ in {
     moreutils
     protonplus
     wine
+    wireguard-tools
+    reaction # ip46tables
   ];
+
+  # wireguard traffic
+  networking.firewall = {
+   # if packets are still dropped, they will show up in dmesg
+   logReversePathDrops = true;
+   # wireguard trips rpfilter up
+   extraCommands = ''
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
+     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
+   '';
+   extraStopCommands = ''
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
+     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
+   '';
+  };
 
   programs.ssh.startAgent = true;
   programs.ssh.agentTimeout = "6h";
@@ -152,14 +169,14 @@ in {
 
   programs.gamemode.enable = true;
 
-  hardware.nvidia.package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.mkDriver {
+  hardware.nvidia.package = lib.mkForce (config.boot.kernelPackages.nvidiaPackages.mkDriver {
     version = "550.142";
     sha256_64bit = "sha256-bdVJivBLQtlSU7Zre9oVCeAbAk0s10WYPU3Sn+sXkqE=";
     sha256_aarch64 = "sha256-sBp5fcCPMrfrTZTF1FqKo9g0wOWP+5+wOwQ7PLWI6wA=";
     openSha256 = "sha256-hjpwTR4I0MM5dEjQn7MKM3RY1a4Mt6a61Ii9KW2KbiY=";
     settingsSha256 = "sha256-Wk6IlVvs23cB4s0aMeZzSvbOQqB1RnxGMv3HkKBoIgY=";
     persistencedSha256 = "ssha256-yQFrVk4i2dwReN0XoplkJ++iA1WFhnIkP7ns4ORmkFA=";
-  };
+  });
 
   system.stateVersion = "23.11"; # do not touch
 }
