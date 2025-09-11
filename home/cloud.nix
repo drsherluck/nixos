@@ -60,6 +60,7 @@ in {
     fluxcd
     eks-token-cache
     eks-configure-kube
+    amazon-ecr-credential-helper
   ];
 
   catppuccin.k9s.transparent = true;

@@ -21,7 +21,7 @@
       cpv = "rsync -ah --info=progress2";
       ls = "eza --color=auto";
       l = "eza --long --header --no-permissions --octal-permissions --group-directories-first --no-quotes -a";
-      ll = "eza --long --header --no-permissions --octal-permissions --group-directories-first --no-quotes";
+      ll = "eza --long --header --no-permissions --octal-permissions --group-directories-first --no-quotes --ignore-glob='__pycache__'";
       lt = "eza --tree --level 2 --long --group-directories-first --no-permissions --no-time --no-user --no-quotes --ignore-glob='__pycache__'";
       cg = "cd `git rev-parse --show-toplevel`";
       tf = "terraform";
