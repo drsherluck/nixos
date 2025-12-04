@@ -4,11 +4,17 @@
   ];
 
   services.resolved.enable = true;
+
   networking = {
     networkmanager.enable = true;
     nameservers = ["127.0.0.1"];
-    dhcpcd.extraConfig = "nohook resolv.conf";
+    dhcpcd.extraConfig = ''
+      nohook resolv.conf
+      supersede domain-name-servers 127.0.0.1
+    '';
     networkmanager.dns = "systemd-resolved";
+    # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/networking/networkmanager.nix#L23
+    # resolvconf.enable = false;
   };
 
   networking.firewall = {
@@ -32,16 +38,21 @@
   services.unbound.settings = {
     server = {
       verbosity = 0;
+      log-queries = "no";
       use-syslog = "yes";
       prefetch = "yes";
       interface = ["127.0.0.1"];
       access-control = [];
+      harden-glue = "yes";
+      harden-dnssec-stripped = "yes";
+      use-caps-for-id = "no";
+      hide-identity = "yes";
+      hide-version = "yes";
       do-ip4 = "yes";
       do-ip6 = "yes";
       do-udp = "yes";
       do-tcp = "yes";
       tls-upstream = "yes";
-      tls-cert-bundle = "/etc/ssl/certs/ca-certificates.crt";
       deny-any = "yes";
       minimal-responses = "yes";
     };
@@ -49,9 +60,9 @@
       {
         name = ".";
         forward-tls-upstream = "yes";
+        forward-tcp-upstream = "yes";
+        forward-first = "no";
         forward-addr = [
-          #"1.1.1.1@853#cloudflare-dns.com"
-          #"1.0.0.1@853#cloudflare-dns.com"
           "9.9.9.9@853#dns.quad9.net"
           "149.112.112.112@853#dns.quad9.net"
         ];
@@ -61,9 +72,6 @@
 
   unbound-rules = {
     enable = true;
-    oisd-nsfw = false;
     oisd-big = true;
-    safesearch = false;
-    youtube = false;
   };
 }

@@ -14,6 +14,7 @@
     git
     cmake
     pkg-config
+    dig
 
     # c/c++ tools
     valgrind
