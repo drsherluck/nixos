@@ -39,7 +39,7 @@ in {
   hardware.nvidia = {
     inherit open;
     modesetting.enable = true;
-    powerManagement.enable = lib.mkDefault false;
+    # powerManagement.enable = lib.mkDefault false;
     nvidiaSettings = true;
   };
 }

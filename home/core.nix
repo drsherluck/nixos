@@ -57,7 +57,6 @@
     flavor = "mocha";
     # overrides
     dunst.flavor = "macchiato";
-    gtk.enable = false;
     mpv.enable = false;
     tmux.enable = false;
     kvantum = {
@@ -124,16 +123,26 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
-      package = pkgs.catppuccin-gtk.override {
+  gtk.theme = {
+    name = "catppuccin-macchiato-standard-blue-dark+default";
+    # https://www.reddit.com/r/NixOS/comments/1dlqoem/comment/l9qr2hw/
+    package =
+      (pkgs.catppuccin-gtk.overrideAttrs {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "gtk";
+          rev = "v1.0.3";
+          fetchSubmodules = true;
+          hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
+        };
+
+        postUnpack = "";
+      }).override
+      {
         accents = ["blue"];
-        size = "standard";
         variant = "macchiato";
+        size = "standard";
       };
-    };
     cursorTheme = {
       name = config.home.pointerCursor.name;
       package = config.home.pointerCursor.package;

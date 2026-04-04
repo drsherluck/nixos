@@ -108,8 +108,9 @@ in {
     ];
   };
 
-
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login = {
+    HandleLidSwitchExternalPower = "ignore";
+  };
 
   # home-manager managed xdg.portal
   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];

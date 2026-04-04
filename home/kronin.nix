@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   chromium-work = pkgs.writeShellScriptBin "chromium-work" ''
     mkdir -p "''$HOME/work/.chromium"
     chromium --user-data-dir="''$HOME/work/.chromium"

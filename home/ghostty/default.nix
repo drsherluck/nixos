@@ -10,7 +10,6 @@
       cursor-style-blink = true;
       font-family = "Consolas Nerd Fonts";
       font-size = 7.8;
-      gtk-adwaita = false;
       gtk-titlebar = false;
       link-url = true;
       mouse-hide-while-typing = true;
