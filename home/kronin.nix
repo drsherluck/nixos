@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: let
+  chromium-work = pkgs.writeShellScriptBin "chromium-work" ''
+    mkdir -p "''$HOME/work/.chromium"
+    chromium --user-data-dir="''$HOME/work/.chromium"
+  '';
+in {
   imports = [
     ./cloud.nix
     ./core.nix
     ./dev.nix
-    ./foot
     ./i3
     ./sops
     ./sway
@@ -11,6 +18,10 @@
 
   # sops.secrets."git/email" = {};
   # sops.defaultSopsFile = ../secrets/arrakis.yaml;
+
+  home.packages = [
+    chromium-work
+  ];
 
   programs = {
     git.userEmail = "danilobett@gmail.com";
