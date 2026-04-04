@@ -73,7 +73,10 @@
         theme_background = false;
       };
     };
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      shellWrapperName = "y";
+    };
     zathura.enable = true;
     gpg.enable = true;
     spotify-player.enable = true;
@@ -112,6 +115,7 @@
     in {
       enable = true;
       createDirectories = false;
+      setSessionVariables = true;
       music = "${home}/music";
       download = "${home}/downloads";
       documents = "${home}/documents";

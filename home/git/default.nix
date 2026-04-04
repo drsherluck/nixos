@@ -25,28 +25,33 @@ in {
     git-filter-repo
   ];
 
+  programs.delta = {
+    enable = true;
+    options = {
+      navigate = true;
+      light = false;
+      side-by-side = false;
+    };
+    enableGitIntegration = true;
+  };
+
   programs.git = {
     enable = true;
-    userName = lib.mkDefault "drsherluck";
 
     hooks = {
       pre-push = ./pre-push;
     };
 
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        light = false;
-        side-by-side = false;
-      };
-    };
+    signing.format = "openpgp";
 
-    extraConfig = {
+    settings = {
       gpg.format = "ssh";
       commit.gpgsign = true;
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-      user.signingkey = "~/.ssh/id_ed25519.pub";
+      user = {
+        signingkey = "~/.ssh/id_ed25519.pub";
+        name = lib.mkDefault "drsherluck";
+      };
       core = {
         editor = "nvim";
         whitespace = "error";

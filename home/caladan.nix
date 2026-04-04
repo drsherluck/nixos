@@ -13,7 +13,7 @@ in {
   ];
 
   programs = {
-    git.userEmail = "danilobett@gmail.com";
+    git.settings.user.email = "danilobett@gmail.com";
   };
 
   home.packages = [

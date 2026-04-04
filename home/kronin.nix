@@ -21,7 +21,7 @@ in {
   ];
 
   programs = {
-    git.userEmail = "danilobett@gmail.com";
+    git.settings.user.email = "danilobett@gmail.com";
   };
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {

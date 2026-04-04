@@ -28,7 +28,7 @@ vim.o.hlsearch = true
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undo/"
 vim.o.undofile = true
 -- turn off lsp logging
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 -- leader
 local leader = ' '
 vim.g.mapleader = leader

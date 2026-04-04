@@ -30,6 +30,7 @@ in {
     efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
+      configurationLimit = 3;
       efiSupport = true;
       devices = ["nodev"];
       useOSProber = false;
@@ -89,7 +90,7 @@ in {
 
   programs.slock.enable = true;
 
-  programs.light.enable = true;
+  # programs.light.enable = true;
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
   home-manager = {

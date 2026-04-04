@@ -1,7 +1,7 @@
 {
   lib,
   stdenvNoCC,
-  vistafonts,
+  vista-fonts,
   python3Packages,
   fetchzip,
 }:
@@ -26,7 +26,7 @@ in
 
     buildPhase = ''
       mkdir -p $out/share/fonts/truetype/NerdFonts
-      for f in ${vistafonts}/share/fonts/truetype/consola*; do
+      for f in ${vista-fonts}/share/fonts/truetype/consola*; do
         python font-patcher $f --complete --no-progressbars --outputdir $out/share/fonts/truetype/NerdFonts
       done
     '';

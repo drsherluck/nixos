@@ -1,4 +1,4 @@
-local lspconfig = require('lspconfig')
+local lspconfig = vim.lsp.config
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
 end
 
 
-lspconfig.lua_ls.setup {
+lspconfig('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -39,9 +39,9 @@ lspconfig.lua_ls.setup {
             }
         }
     }
-}
+})
 
-lspconfig.pylsp.setup {
+lspconfig('pylsp', {
     on_attach = on_attach,
     capabilities = capabilities,
     plugins = {
@@ -52,42 +52,42 @@ lspconfig.pylsp.setup {
             enabled = true
         },
     }
-}
+})
 
-lspconfig.rust_analyzer.setup {
+lspconfig('rust_analyzer', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.clangd.setup {
+lspconfig('clangd', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.terraformls.setup {
+lspconfig('terraformls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.nil_ls.setup {
+lspconfig('nil_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.gopls.setup {
+lspconfig('gopls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.zls.setup {
+lspconfig('zls', {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
-lspconfig.tinymist.setup {
+lspconfig('tinymist', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         exportPdf = "never",
     },
-}
+})

@@ -5,7 +5,7 @@
     noto-fonts-cjk-sans
     noto-fonts-lgc-plus
     nerd-fonts.inconsolata
-    vistafonts
+    vista-fonts
     mononoki
     aileron
     atkinson-hyperlegible

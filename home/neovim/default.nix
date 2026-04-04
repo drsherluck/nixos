@@ -14,12 +14,14 @@ in {
       clang-tools
       zls
       ruff
-      python312Packages.python-lsp-server
-      python312Packages.python-lsp-ruff
+      python313Packages.python-lsp-server
+      python313Packages.python-lsp-ruff
       nil
       gopls
       terraform-ls
+      tree-sitter
       tinymist
+      fd
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -28,6 +30,9 @@ in {
         config = toLua ''
           require('neoscroll').setup()
         '';
+      }
+      {
+        plugin = plenary-nvim;
       }
       {
         plugin = bigfile-nvim;
@@ -72,7 +77,7 @@ in {
         plugin = lualine-nvim;
         config = toLua ''
           require('lualine').setup {
-            options = { theme = "catppuccin" }
+            options = { theme = "catppuccin-nvim" }
           }
         '';
       }
@@ -120,7 +125,7 @@ in {
       }
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./config/options.lua}
       ${builtins.readFile ./config/custom.lua}
     '';

@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter').setup {
     ensure_installed = { },
     sync_install = false,
     auto_install = false,
@@ -12,3 +12,38 @@ require('nvim-treesitter.configs').setup {
         enable = true
     },
 }
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {
+      'bash',
+      'c',
+      'cmake',
+      'cpp',
+      'dockerfile',
+      'glsl',
+      'go',
+      'gotmpl',
+      'hcl',
+      'hlsl',
+      'jq',
+      'json',
+      'just',
+      'lua',
+      'make',
+      'markdown',
+      'nix',
+      'python',
+      'rust',
+      'slang',
+      'toml',
+      'vim',
+      'yaml',
+      'zig',
+    },
+    callback = function()
+        vim.treesitter.start()
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo.foldmethod = 'expr'
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+})
