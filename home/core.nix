@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -50,6 +51,10 @@
     # cursors
     bibata-cursors
   ];
+
+  # ghostty
+  # ghostty.settings.theme = lib.mkForce "dayfox";
+  # ghostty.settings.theme = lib.mkForce "GitHub-Light-Colorblind";
 
   catppuccin = {
     enable = true;
@@ -101,7 +106,7 @@
 
   xdg = {
     portal = {
-      enable = true;
+      enable = lib.mkForce true;
       extraPortals = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-wlr

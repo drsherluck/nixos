@@ -10,6 +10,9 @@
     aileron
     atkinson-hyperlegible
     lato
+    libertinus
+    ibm-plex
+    newcomputermodern
     (callPackage ../pkgs/consolas-nerd-font.nix {})
   ];
 

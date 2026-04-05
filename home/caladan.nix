@@ -10,10 +10,12 @@ in {
     ./dev.nix
     ./i3
     ./sway
+    ./hyprland
+    ./obsidian
   ];
 
   programs = {
-    git.settings.user.email = "danilobett@gmail.com";
+    git.userEmail = "danilo@tracefy.com";
   };
 
   home.packages = [

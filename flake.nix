@@ -2,6 +2,7 @@
   description = "nixos config flake";
 
   inputs = {
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     catppuccin.url = "github:catppuccin/nix";
@@ -25,6 +26,7 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    determinate,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -63,7 +65,7 @@
             nixos-hardware.nixosModules.common-cpu-amd
             nixos-hardware.nixosModules.common-cpu-amd-zenpower
             nixos-hardware.nixosModules.common-cpu-amd-pstate
-            # nixos-hardware.nixosModules.common-gpu-nvidia-prime
+            determinate.nixosModules.default
           ];
         specialArgs = {inherit inputs outputs;};
       };

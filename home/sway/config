@@ -163,6 +163,10 @@ bindsym XF86AudioPlay        exec playerctl play-pause
 bindsym XF86MonBrightnessUp   exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 
+# keyboard backlight
+bindsym XF86KbdBrightnessUp   exec light -s sysfs/leds/asus::kbd\_backlight -A 5
+bindsym XF86KbdBrightnessDown exec light -s sysfs/leds/asus::kbd\_backlight -U 5
+
 # screenshot
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 

@@ -115,6 +115,7 @@ in {
           p.tree-sitter-dockerfile
           p.tree-sitter-vim
           p.tree-sitter-just
+          p.tree-sitter-jinja
         ]);
         config = toLuaFile ./config/plugins/treesitter.lua;
       }

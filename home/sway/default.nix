@@ -9,6 +9,7 @@
     enable = true;
     systemd.enable = true;
     swaynag.enable = true;
+    checkConfig = true;
     config = null;
     extraConfig = builtins.readFile ./config;
     extraSessionCommands = ''

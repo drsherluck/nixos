@@ -13,6 +13,24 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    initContent = ''
+      wtc() {
+          if [ -z "$1" ]; then
+              echo "Usage: wtc <branch-name>"
+              return 1
+          fi
+
+          local branch_name=$1
+          local target_dir="../$branch_name"
+
+          git worktree add -b "$branch_name" "$target_dir"
+
+          if [ $? -eq 0 ]; then
+              cd "$target_dir"
+          fi
+      }
+    '';
+
     shellAliases = {
       k = "kubectl";
       v = "nvim";
@@ -30,12 +48,15 @@
       ga = "git add";
       gl = "git pull";
       gp = "git push";
-      gdf = "git diff";
+      gdf = "git difftool -y";
       gch = "git checkout";
       gsw = "git switch";
       gsd = "git switch \"$(git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/)\" && gpru && gl";
       glo = "git log --oneline";
+      gwa = "wtc";
+      gwr = "git worktree remove";
       ff = "fastfetch";
+      oc = "OPENROUTER_KEY=\"$(pass show llm/openrouter)\" GEMINI_KEY=\"$(pass show llm/gemini)\" AWS_PROFILE=\"none\" nix run github:nixos/nixpkgs/nixos-unstable#opencode";
     };
 
     plugins = [

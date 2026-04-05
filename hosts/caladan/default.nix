@@ -17,7 +17,8 @@ in {
     ../../system/network.nix
     ../../system/keyboard.nix
     ../../system/nix.nix
-    ../../system/nvidia.nix
+    # ../../system/nvidia.nix
+    ./nvidia.nix
     ../../system/fonts.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
@@ -25,6 +26,8 @@ in {
     ../../system/amd.nix
     ../../system/chromium-policy.nix
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -38,7 +41,8 @@ in {
 
   # Base settings
   networking.hostName = "caladan";
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = null;
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable sound.
@@ -87,6 +91,10 @@ in {
     };
   };
 
+  # for battery module
+  services.upower.enable = true;
+  programs.hyprland.enable = true;
+
   programs.slock.enable = true;
 
   programs.light.enable = true;
@@ -126,6 +134,8 @@ in {
     pulseaudio # pactl
     vulkan-validation-layers # for wlr vulkan
     moreutils
+    wireguard-tools
+
   ];
 
   programs.ssh.startAgent = true;
@@ -133,26 +143,56 @@ in {
 
   # power management
   services.tlp.enable = false;
-  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+        enable_thresholds = "true";
+        start_threshold = "40";
+        stop_threshold = "80";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
   systemd.sleep.extraConfig = ''
     AllowSuspend=yes
     AllowHibernation=yes
     AllowHybridSleep=yes
     AllowSuspendThenHibernate=yes
   '';
+  services.logind.settings.Login = {
+    # HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     powerManagement.enable = true;
     prime = {
       offload = {
         enable = lib.mkOverride 990 true;
         enableOffloadCmd = true;
       };
-      sync.enable = true;
+      sync.enable = false;
       nvidiaBusId = "PCI:100:0:0";
       amdgpuBusId = "PCI:101:0:0";
     };
   };
+
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
+  programs.gamemode.enable = true;
 
   system.stateVersion = "25.05"; # do not touch
 }

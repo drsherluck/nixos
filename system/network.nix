@@ -1,4 +1,4 @@
-{lib, ...}: {
+{pkgs, lib, ...}: {
   imports = [
     ./../modules/unbound-rules.nix
   ];
@@ -31,6 +31,7 @@
       iptables -A DOCKER-USER -i wl+ -j DROP
       iptables -A DOCKER-USER -i en+ -j DROP
       iptables -A DOCKER-USER -j RETURN
+      iptables -A nixos-fw -p tcp --source 192.168.0.0/16 --dport 1024:65535 -j nixos-fw-accept
     '';
   };
 

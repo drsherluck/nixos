@@ -35,6 +35,11 @@ in {
     enableGitIntegration = true;
   };
 
+  difftastic = {
+    git.diffToolMode = true;
+    display = "inline";
+  };
+
   programs.git = {
     enable = true;
 
@@ -60,6 +65,7 @@ in {
       };
     };
   };
+
 
   programs.gh = {
     enable = true;

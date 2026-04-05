@@ -54,6 +54,8 @@ in {
     aws-vault
     kubectl
     kubectl-cnpg
+    cmctl
+    kubectl-view-secret
     tenv
     pass
     kubernetes-helm
@@ -66,6 +68,41 @@ in {
   catppuccin.k9s.transparent = true;
   programs.k9s = {
     enable = true;
+    plugin = {
+      cnpg-status = {
+        shortCut = "s";
+        description = "Status";
+        scopes = ["cluster"];
+        command = "${pkgs.bash}/bin/bash";
+        background = false;
+        args = [
+          "-c"
+          "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
+        ];
+      };
+      cnpg-status-verbose = {
+        shortCut = "Shift-S";
+        description = "Status (verbose)";
+        scopes = ["cluster"];
+        command = "${pkgs.bash}/bin/bash";
+        background = false;
+        args = [
+          "-c"
+          "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT --verbose |& less -R"
+        ];
+      };
+      cnpg-psql = {
+        shortCut = "p";
+        description = "PSQL shell";
+        scopes = ["cluster"];
+        command = "${pkgs.bash}/bin/bash";
+        background = false;
+        args = [
+          "-c"
+          "kubectl cnpg psql $NAME -n $NAMESPACE --context $CONTEXT --verbose |& less -R"
+        ];
+      };
+    };
   };
 
   programs.awscli = {
