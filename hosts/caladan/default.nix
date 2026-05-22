@@ -8,17 +8,17 @@
   pkgs,
   ...
 }: let
-  settings.user.wm = "sway";
+  settings.user.wm = "hyprland";
 in {
   _module.args = {inherit settings;};
   imports = [
     ./hardware.nix
     ./disko.nix
+    ./nvidia.nix
     ../../system/network.nix
     ../../system/keyboard.nix
     ../../system/nix.nix
     # ../../system/nvidia.nix
-    ./nvidia.nix
     ../../system/fonts.nix
     ../../system/docker.nix
     ../../system/ddcutil.nix
@@ -28,6 +28,8 @@ in {
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -97,7 +99,7 @@ in {
 
   programs.slock.enable = true;
 
-  programs.light.enable = true;
+  # programs.light.enable = true;
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
   home-manager = {
@@ -135,7 +137,7 @@ in {
     vulkan-validation-layers # for wlr vulkan
     moreutils
     wireguard-tools
-
+    linuxPackages_latest.cpupower
   ];
 
   programs.ssh.startAgent = true;
@@ -159,40 +161,25 @@ in {
       };
     };
   };
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowHybridSleep=yes
-    AllowSuspendThenHibernate=yes
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "yes";
+    AllowHibernation = "yes";
+    AllowHybridSleep = "yes";
+    AllowSuspendThenHibernate = "yes";
+  };
   services.logind.settings.Login = {
     # HandleLidSwitch = "ignore";
     HandleLidSwitchExternalPower = "ignore";
     HandleLidSwitchDocked = "ignore";
   };
 
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-    powerManagement.enable = true;
-    prime = {
-      offload = {
-        enable = lib.mkOverride 990 true;
-        enableOffloadCmd = true;
-      };
-      sync.enable = false;
-      nvidiaBusId = "PCI:100:0:0";
-      amdgpuBusId = "PCI:101:0:0";
-    };
-  };
-
+  programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
   };
-
-  programs.gamemode.enable = true;
 
   system.stateVersion = "25.05"; # do not touch
 }

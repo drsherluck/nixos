@@ -2,7 +2,7 @@ _: {
   programs.chromium = {
     enable = true;
     extensions = [
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+      {id = "ddkjiahejlhfcafbddmgiahcphecmpfh";} # ublock origin lite
       {id = "gebbhagfogifgggkldgodflihgfeippi";} # youtube dislike
       {id = "hlepfoohegkhhmjieoechaddaejaokhf";} # refined github
       {id = "jghecgabfgfdldnmbfkhmffcabddioke";} # volume master
@@ -14,7 +14,12 @@ _: {
     commandLineArgs = [
       "--enable-gpu"
       "--disable-features=MediaRouter" # disable mDNS
-      # "--enable-features=UseOzonePlatform"
+      "--enable-features=UseOzonePlatform"
+      "--enable-features=AcceleratedVideoDecodeLinuxGL"
+      "--enable-features=AcceleratedVideoEncoder"
+      "--enable-features=AcceleratedVideoDecodeLinuxZeroCopyGL"
+      "--enable-features=TouchpadOverscrollHistoryNavigation"
+      "--disable-gpu-compositing"
       # "--ozone-platform=wayland"
     ];
   };

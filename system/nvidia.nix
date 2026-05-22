@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   settings,
@@ -33,7 +32,7 @@ in {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [libva-vdpau-driver];
+    extraPackages = with pkgs; [nvidia-vaapi-driver];
   };
 
   hardware.nvidia = {

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   fonts.packages = with pkgs; [
     openmoji-color
     noto-fonts
@@ -13,6 +17,8 @@
     libertinus
     ibm-plex
     newcomputermodern
+    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-mono-nerd
+    inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system}.sf-pro-nerd
     (callPackage ../pkgs/consolas-nerd-font.nix {})
   ];
 

@@ -19,6 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    apple-fonts = {
+      url = "github:Lyndeno/apple-fonts.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -27,6 +31,7 @@
     nixpkgs-stable,
     home-manager,
     determinate,
+    apple-fonts,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -56,6 +61,7 @@
           ];
         specialArgs = {inherit inputs outputs;};
       };
+
       caladan = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
@@ -69,6 +75,7 @@
           ];
         specialArgs = {inherit inputs outputs;};
       };
+
       kronin = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
@@ -81,6 +88,7 @@
           ];
         specialArgs = {inherit inputs outputs;};
       };
+
       # https://nixos.wiki/wiki/Creating_a_NixOS_live_CD
       # https://nix.dev/tutorials/nixos/building-bootable-iso-image.html
       # build:   nix build .#nixosConfigurations.iso.config.system.build.images.isoImage

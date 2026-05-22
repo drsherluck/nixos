@@ -32,12 +32,16 @@ in {
       light = false;
       side-by-side = false;
     };
-    enableGitIntegration = true;
+    enableGitIntegration = false;
   };
 
-  difftastic = {
-    git.diffToolMode = true;
-    display = "inline";
+  programs.difftastic = {
+    enable = true;
+    git = {
+      enable = true;
+      diffToolMode = true;
+    };
+    options.display = "inline";
   };
 
   programs.git = {
@@ -65,7 +69,6 @@ in {
       };
     };
   };
-
 
   programs.gh = {
     enable = true;

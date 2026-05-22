@@ -1,4 +1,3 @@
-local lspconfig = vim.lsp.config
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -17,6 +16,11 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
     end, {})
+end
+
+local lspconfig = function(name, config)
+    vim.lsp.config(name, config)
+    vim.lsp.enable(name)
 end
 
 

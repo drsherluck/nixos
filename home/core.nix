@@ -63,6 +63,7 @@
     # overrides
     dunst.flavor = "macchiato";
     mpv.enable = false;
+    nvim.enable = false; # configured in neovim
     tmux.enable = false;
     kvantum = {
       accent = "blue";
@@ -89,7 +90,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentry.package = pkgs.pinentry-curses;
+    pinentry.package = pkgs.pinentry-gtk2;
   };
 
   home.pointerCursor = {

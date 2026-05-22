@@ -15,13 +15,22 @@ in {
   ];
 
   programs = {
-    git.userEmail = "danilo@tracefy.com";
+    git.settings.user.email = "danilo@tracefy.com";
+    uv.enable = true;
   };
 
-  home.packages = [
-    pkgs.mycli
+  programs.claude-code = {
+    enable = true;
+  };
+
+  home.packages = with pkgs; [
     chromium-personal
+    # claude sandbox
+    bubblewrap
+    socat
+    jellyfin-mpv-shim
   ];
+
 
   xdg.configFile."gobar/config.toml".source = (pkgs.formats.toml {}).generate "config.toml" {
     modules = ["network" "volume" "cputemp" "memory" "weather" "battery" "time"];

@@ -1,15 +1,22 @@
-{lib, ...}: {
+{lib, ...}:
+let
+  font = "SFMono Nerd Font";
+in {
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
     installBatSyntax = true;
+
     settings = {
       clipboard-trim-trailing-spaces = true;
       cursor-invert-fg-bg = true;
       cursor-style = "bar";
       cursor-style-blink = true;
-      font-family = "Consolas Nerd Fonts";
-      font-size = 7.8;
+      font-family = "${font} Medium";
+      font-family-italic = "${font} Medium Italic";
+      font-family-bold = "${font} Bold";
+      font-family-bold-italic  = "${font} Bold Italic";
+      font-size = 7.5;
       gtk-titlebar = false;
       link-url = true;
       mouse-hide-while-typing = true;
@@ -19,7 +26,11 @@
       window-padding-y = 0;
       window-theme = "dark";
       theme = lib.mkDefault "default";
+      working-directory = "home";
+      window-inherit-working-directory = false;
     };
+
+    systemd.enable = true;
 
     themes = {
       default = {

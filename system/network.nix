@@ -1,20 +1,26 @@
-{pkgs, lib, ...}: {
+{
+  lib,
+  ...
+}: {
   imports = [
     ./../modules/unbound-rules.nix
   ];
 
-  services.resolved.enable = true;
-
   networking = {
-    networkmanager.enable = true;
     nameservers = ["127.0.0.1"];
-    dhcpcd.extraConfig = ''
-      nohook resolv.conf
-      supersede domain-name-servers 127.0.0.1
-    '';
-    networkmanager.dns = "systemd-resolved";
-    # https://github.com/NixOS/nixpkgs/blob/nixos-25.05/nixos/modules/services/networking/networkmanager.nix#L23
-    # resolvconf.enable = false;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      connectionConfig = {
+        "ipv4.ignore-auto-dns" = "1";
+        "ipv6.ignore-auto-dns" = "1";
+      };
+    };
+  };
+
+  services.resolved = {
+    enable = true;
+    settings.Resolve.FallbackDNS = lib.mkForce [];
   };
 
   networking.firewall = {
@@ -74,5 +80,7 @@
   unbound-rules = {
     enable = true;
     oisd-big = true;
+    oisd-nsfw = true;
+    safesearch = true;
   };
 }

@@ -1,12 +1,11 @@
-{pkgs, ...}: let
-  toLua = str: "lua << EOF\n${str}\nEOF\n";
-  toLuaFile = file: toLua (builtins.readFile file);
-in {
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withPython3 = false;
+    withRuby = false;
 
     extraPackages = with pkgs; [
       lua-language-server
@@ -27,7 +26,8 @@ in {
     plugins = with pkgs.vimPlugins; [
       {
         plugin = neoscroll-nvim;
-        config = toLua ''
+        type = "lua";
+        config = ''
           require('neoscroll').setup()
         '';
       }
@@ -36,11 +36,13 @@ in {
       }
       {
         plugin = bigfile-nvim;
-        config = toLuaFile ./config/plugins/bigfile.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/bigfile.lua;
       }
       {
         plugin = indent-blankline-nvim;
-        config = toLua ''
+        type = "lua";
+        config = ''
           require('ibl').setup {
             scope = {
               show_start = false,
@@ -51,11 +53,13 @@ in {
       }
       {
         plugin = nvim-lspconfig;
-        config = toLuaFile ./config/plugins/lsp.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/lsp.lua;
       }
       {
         plugin = nvim-cmp;
-        config = toLuaFile ./config/plugins/cmp.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/cmp.lua;
       }
       cmp_luasnip
       cmp-nvim-lsp
@@ -65,17 +69,20 @@ in {
       # normal: [count]gcc
       {
         plugin = comment-nvim;
-        config = toLua ''
+        type = "lua";
+        config = ''
           require('Comment').setup()
         '';
       }
       {
         plugin = catppuccin-nvim;
-        config = toLuaFile ./config/plugins/color.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/color.lua;
       }
       {
         plugin = lualine-nvim;
-        config = toLua ''
+        type = "lua";
+        config = ''
           require('lualine').setup {
             options = { theme = "catppuccin-nvim" }
           }
@@ -84,7 +91,8 @@ in {
       nvim-web-devicons
       {
         plugin = telescope-nvim;
-        config = toLuaFile ./config/plugins/telescope.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/telescope.lua;
       }
       telescope-fzf-native-nvim
       {
@@ -117,12 +125,14 @@ in {
           p.tree-sitter-just
           p.tree-sitter-jinja
         ]);
-        config = toLuaFile ./config/plugins/treesitter.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/treesitter.lua;
       }
       nvim-treesitter-parsers.vimdoc
       {
         plugin = oil-nvim;
-        config = toLuaFile ./config/plugins/oil.lua;
+        type = "lua";
+        config = builtins.readFile ./config/plugins/oil.lua;
       }
     ];
 

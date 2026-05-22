@@ -1,19 +1,19 @@
 {
   pkgs,
-  lib,
   ...
 }: let
   toggle-kdb-light = pkgs.writeShellScriptBin "toggle-kdb-light" ''
-    value=$(light -s sysfs/leds/asus::kbd\_backlight -G)
-    if [[ "$value" = "0.00" ]]; then
-      light -s sysfs/leds/asus::kbd\_backlight -A 50
+    value=$(brightnessctl -d asus::kbd_backlight get)
+    if [[ "$value" -ne $(brightnessctl -d asus::kbd_backlight max) ]]; then
+      brightnessctl -d asus::kbd_backlight set +1
     else
-      light -s sysfs/leds/asus::kbd\_backlight -U 50
+      brightnessctl -d asus::kbd_backlight set 0
     fi
   '';
 in {
   home.packages = with pkgs; [
     killall
+    brightnessctl
     toggle-kdb-light
   ];
 
@@ -24,8 +24,8 @@ in {
   };
 
   programs.hyprpanel = {
-    enable = true;
-    dontAssertNotificationDaemons = true;
+    enable = false;
+    # dontAssertNotificationDaemons = true;
     settings = {
       scalingPriority = "hyprland";
       notifications.showActionsOnHover = true;
@@ -96,9 +96,61 @@ in {
     };
   };
 
-  services.dunst.enable = lib.mkForce false;
+  programs.ashell = {
+    enable = true;
+    systemd.enable = true;
+    settings = {
+      position = "Top";
+      animations.enabled = false;
+      modules = {
+        left = ["Workspaces"];
+        center = ["WindowTitle"];
+        right = [
+          "MediaPlayer"
+          "SystemInfo"
+          "Tray"
+          "Settings"
+          "Tempo"
+          "Privacy"
+        ];
+      };
+      appearance = {
+        style = "Islands";
+        opacity = 0.8;
+        scale_factor = 0.8;
+        font_name = "SFMono Nerd Font Bold";
+        workspace_colors = [
+          { base = "#fab387"; text = "#000000"; }
+        ];
+      };
+      workspaces = {
+        visibility_mode = "MonitorSpecific";
+        enable_workspace_filling = false;
+      };
+      window_title = {
+        truncate_title_after_length = 64;
+      };
+      tempo = {
+        format = "%a %d %b  %H:%M:%S";
+      };
+      system_info = {
+        cpu = {
+          warn_threshold = 60;
+          alert_threshold = 80;
+        };
+        memory = {
+          warn_threshold = 60;
+          alert_threshold = 80;
+        };
+        temperature = {
+          warn_threshold = 60;
+          alert_threshold = 80;
+        };
+      };
+    };
+  };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-hyprland];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -121,11 +173,11 @@ in {
         gaps_in = 1;
         gaps_out = 1;
         border_size = 2;
-        no_border_on_floating = false;
+        # no_border_on_floating = false;
         allow_tearing = true;
       };
 
-      windowrulev2 = "immediate, class:^(tengine)$";
+      # windowrulev2 = "immediate, class:^(tengine)$";
 
       misc = {
         # disable vsync
@@ -150,7 +202,6 @@ in {
       exec-once = [
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type text --watch cliphist store"
-        "${pkgs.hyprpanel}/bin/hyprpanel"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
@@ -190,7 +241,9 @@ in {
         "$mod, D, exec, killall rofi || rofi -show run"
         "$mod SHIFT, Q, killactive"
         "$mod SHIFT, E, exit"
-        "$mod, F, fullscreen"
+        "$mod, F, fullscreen, 2"
+        "$mod SHIFT, F, fullscreen, 0"
+        "$mod CTRL, F, fullscreen, 0 1"
         "$mod, Space, togglefloating"
         "$mod, L, exec, swaylock"
 
@@ -234,14 +287,15 @@ in {
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
 
-        ", XF86MonBrightnessUp, exec, light -A 10"
-        ", XF86MonBrightnessDown, exec, light -U 10"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
-        ", XF86KbdLightOnOff, exec, ${toggle-kdb-light}"
-        ", XF86KbdBrightnessUp, exec, light -s sysfs/leds/asus::kbd\_backlight -A 5"
-        ", XF86KbdBrightnessDown, exec, light -s sysfs/leds/asus::kbd\_backlight -U 5"
+        ", XF86KbdLightOnOff, exec, toggle-kdb-light"
+        ", XF86KbdBrightnessUp, exec, brightnessctl -d asus::kbd_backlight set +1"
+        ", XF86KbdBrightnessDown, exec, brightnessctl -d asus::kbd_backlight set 1-"
 
         "$mod SHIFT, S, exec, grim -g \"$(slurp -d)\" - | wl-copy -t image/png"
+        ", Print, exec, grim - | wl-copy -t image/png"
       ];
     };
   };

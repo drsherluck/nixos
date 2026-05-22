@@ -68,7 +68,7 @@ in {
   catppuccin.k9s.transparent = true;
   programs.k9s = {
     enable = true;
-    plugin = {
+    plugins = {
       cnpg-status = {
         shortCut = "s";
         description = "Status";
@@ -114,7 +114,7 @@ in {
 
   services.gpg-agent = {
     enable = lib.mkForce true;
-    pinentry.package = lib.mkDefault pkgs.pinentry-curses;
+    pinentry.package = lib.mkDefault pkgs.pinentry-gtk2;
     defaultCacheTtl = 3600;
     maxCacheTtl = 21600;
   };
