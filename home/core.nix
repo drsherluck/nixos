@@ -57,6 +57,7 @@
   # ghostty.settings.theme = lib.mkForce "GitHub-Light-Colorblind";
 
   catppuccin = {
+    autoEnable = true;
     enable = true;
     accent = "blue";
     flavor = "mocha";
