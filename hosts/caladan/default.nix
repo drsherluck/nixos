@@ -168,7 +168,7 @@ in {
     AllowSuspendThenHibernate = "yes";
   };
   services.logind.settings.Login = {
-    # HandleLidSwitch = "ignore";
+    HandleLidSwitch = "ignore";
     HandleLidSwitchExternalPower = "ignore";
     HandleLidSwitchDocked = "ignore";
   };

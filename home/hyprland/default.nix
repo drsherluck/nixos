@@ -151,8 +151,8 @@ in {
   };
 
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-
   wayland.windowManager.hyprland = {
+    configType = "hyprlang";
     enable = true;
     package = null;
     portalPackage = null;
@@ -182,7 +182,7 @@ in {
       misc = {
         # disable vsync
         vrr = 0;
-        vfr = true;
+        # vfr = true;
 
         enable_anr_dialog = false;
         disable_hyprland_logo = true;

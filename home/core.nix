@@ -65,6 +65,7 @@
     mpv.enable = false;
     nvim.enable = false; # configured in neovim
     tmux.enable = false;
+    hyprland.enable = false;
     kvantum = {
       accent = "blue";
       flavor = "macchiato";
