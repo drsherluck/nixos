@@ -29,6 +29,7 @@ in {
     bubblewrap
     socat
     jellyfin-mpv-shim
+    antigravity-cli
   ];
 
 
