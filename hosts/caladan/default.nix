@@ -176,9 +176,14 @@ in {
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
+    remotePlay.openFirewall = true; # Steam Remote Play / Steam Link
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
+  };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true; # allow renicing for lower latency
   };
 
   system.stateVersion = "25.05"; # do not touch

@@ -37,7 +37,14 @@
       iptables -A DOCKER-USER -i wl+ -j DROP
       iptables -A DOCKER-USER -i en+ -j DROP
       iptables -A DOCKER-USER -j RETURN
+      # Trust the local LAN (RFC1918) on high ports, TCP + UDP, private source IPs only.
+      # UDP is required for Steam Remote Play / Steam Link discovery (UDP 27031-27036).
       iptables -A nixos-fw -p tcp --source 192.168.0.0/16 --dport 1024:65535 -j nixos-fw-accept
+      iptables -A nixos-fw -p tcp --source 10.0.0.0/8     --dport 1024:65535 -j nixos-fw-accept
+      iptables -A nixos-fw -p tcp --source 172.16.0.0/12  --dport 1024:65535 -j nixos-fw-accept
+      iptables -A nixos-fw -p udp --source 192.168.0.0/16 --dport 1024:65535 -j nixos-fw-accept
+      iptables -A nixos-fw -p udp --source 10.0.0.0/8     --dport 1024:65535 -j nixos-fw-accept
+      iptables -A nixos-fw -p udp --source 172.16.0.0/12  --dport 1024:65535 -j nixos-fw-accept
     '';
   };
 
