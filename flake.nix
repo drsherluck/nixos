@@ -37,6 +37,7 @@
     inherit (self) outputs;
     sharedModules = with inputs; [
       catppuccin.nixosModules.catppuccin
+      ./system/catppuccin.nix
       disko.nixosModules.disko
       home-manager.nixosModules.home-manager
       sops-nix.nixosModules.sops

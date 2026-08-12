@@ -1,4 +1,15 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  # Its test suite pins ruff's default rule set: two tests expect an E402 diagnostic
+  # that current ruff no longer emits by default. Skip them, keep the other 12.
+  python-lsp-ruff = pkgs.python314Packages.python-lsp-ruff.overridePythonAttrs (old: {
+    disabledTests =
+      (old.disabledTests or [])
+      ++ [
+        "test_ruff_settings"
+        "test_notebook_input"
+      ];
+  });
+in {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -13,8 +24,8 @@
       clang-tools
       zls
       ruff
-      python313Packages.python-lsp-server
-      python313Packages.python-lsp-ruff
+      python314Packages.python-lsp-server
+      python-lsp-ruff
       nil
       gopls
       terraform-ls

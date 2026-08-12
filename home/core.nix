@@ -96,12 +96,19 @@
   };
 
   home.pointerCursor = {
+    enable = true;
     x11.enable = true;
     gtk.enable = true;
     size = 16;
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
   };
+
+  # `man home-configuration.nix` builds home-manager's options.json, which embeds
+  # nixpkgs' `meta.maintainers` declaration as a context-free store path and makes
+  # nix warn on every evaluation. Drop the manpage instead (docs live at
+  # https://nix-community.github.io/home-manager/options.xhtml).
+  manual.manpages.enable = false;
 
   home.sessionVariables = {
     XDG_CONFIG_HOME = "$HOME/.config";

@@ -39,7 +39,8 @@ in {
     enable = true;
     git = {
       enable = true;
-      diffToolMode = true;
+      # configure both `diff.external` and the difftool (was `diffToolMode = true`)
+      mode = "both";
     };
     options.display = "inline";
   };
@@ -72,7 +73,7 @@ in {
 
   programs.gh = {
     enable = true;
-    extensions = [pkgs.gh-eco];
+    extensions = with pkgs; [gh-eco gh-stack];
     settings.git_protocol = "ssh";
   };
 
